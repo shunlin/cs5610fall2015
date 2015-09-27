@@ -32,25 +32,24 @@
             <ul class="nav nav-sidebar">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li class="active"><a href="#">Admin <span class="sr-only">(current)</span></a></li>
-                <li><a href="forms.html">Forms</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li class="active"><a href="#">Forms <span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Admin</h1>
-            <h3>Users</h3>
+            <h1 class="page-header">Forms</h1>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+                <li role="presentation"><a href="form-fields.html">Fields</a></li>
+            </ul>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Username</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Password</th>
-                    <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Role</th>
+                    <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Form Names</th>
                     <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Action</th>
                 </tr>
                 <tr>
-                    <th><input type="text" class="form-control" id="inputUsername" placeholder="username"/></th>
-                    <th><input type="text" class="form-control" id="inputPassword" placeholder="password"/></th>
-                    <th><input type="text" class="form-control" id="inputRole" placeholder="role1, role2"/></th>
+                    <th><input type="text" class="form-control" id="inputName" placeholder="name"/></th>
                     <th>
                         <a href="#"><span class="glyphicon glyphicon-plus"/></a>
                         <a href="#"><span class="glyphicon glyphicon-ok"/></a>
@@ -59,27 +58,21 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>alice</td>
-                    <td></td>
-                    <td>student</td>
+                    <td>Registration Form</td>
                     <td>
                         <a href="#"><span class="glyphicon glyphicon-remove"/></a>
                         <a href="#"><span class="glyphicon glyphicon-pencil"/></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>bob</td>
-                    <td></td>
-                    <td>faculty | admin</td>
+                    <td>Contact List</td>
                     <td>
                         <a href="#"><span class="glyphicon glyphicon-remove"/></a>
                         <a href="#"><span class="glyphicon glyphicon-pencil"/></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>charlie</td>
-                    <td></td>
-                    <td></td>
+                    <td>To Do List</td>
                     <td>
                         <a href="#"><span class="glyphicon glyphicon-remove"/></a>
                         <a href="#"><span class="glyphicon glyphicon-pencil"/></a>
