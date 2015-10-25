@@ -8,21 +8,23 @@
     function Configure($routeProvider) {
         $routeProvider
             .when("/home",{
-                templateUrl: "./home/home.view.html"
-            })
-            .when("/register", {
-                templateUrl: "register.html"
-            })
-            .when("/courses", {
-                templateUrl: "courses.html",
-                controller: "CourseController"
-            })
-            .when("/courseEdit/:count", {
-                templateUrl: "courseEdit.html",
-                controller: "CourseEditController"
+                templateUrl: "home/home.view.html"
             })
             .when("/login", {
-                templateUrl: "login.html"
+                templateUrl: "login/login.view.html",
+                controller: "LoginController"
+            })
+            .when("/register", {
+                templateUrl: "register/register.view.html",
+                controller: "RegisterController"
+            })
+            .when("/profile", {
+                templateUrl: "profile/profile.view.html",
+                controller: "ProfileController"
+            })
+            .when("/form", {
+                templateUrl: "form/form.view.html",
+                controller: "FormController"
             })
             .otherwise({
                 redirectTo: "/home"
