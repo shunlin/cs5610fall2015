@@ -50,6 +50,9 @@
                 if (users[i].id === userId) {
                     users[i].username = userInfo.username;
                     users[i].password = userInfo.password;
+                    users[i].firstName = userInfo.firstName;
+                    users[i].lastName = userInfo.lastName;
+                    users[i].email = userInfo.email;
                     callback(users[i]);
                 }
             }
