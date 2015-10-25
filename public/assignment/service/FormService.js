@@ -43,17 +43,16 @@
         }
 
         function updateFormById(formId, newForm, callback) {
-            for (var form in forms) {
-                if (form.id === formId) {
-                    form.name = newForm.name;
-                    callback(form);
+            for (var i in forms) {
+                if (forms[i].id === formId) {
+                    forms[i].name = newForm.name;
+                    callback(forms[i]);
                 }
             }
         }
 
         // Reference to http://byronsalau.com/blog/how-to-create-a-guid-uuid-in-javascript/
-        function createGuid()
-        {
+        function createGuid() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
                 return v.toString(16);

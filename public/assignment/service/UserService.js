@@ -22,9 +22,9 @@
         return service;
 
         function findUserByUsernameAndPassword(username, password, callback) {
-            for (var user in users) {
-                if (user.username === username && user.password === password)
-                    callback(user);
+            for (var i in users) {
+                if (users[i].username == username && users[i].password == password)
+                    callback(users[i]);
             }
         }
 
@@ -45,19 +45,18 @@
             callback(users);
         }
 
-        function updateUsers(userId, userInfo, callback) {
-            for (var user in users) {
-                if (user.id === userId) {
-                    user.username = userInfo.username;
-                    user.password = userInfo.password;
-                    callback(user);
+        function updateUser(userId, userInfo, callback) {
+            for (var i in users) {
+                if (users[i].id === userId) {
+                    users[i].username = userInfo.username;
+                    users[i].password = userInfo.password;
+                    callback(users[i]);
                 }
             }
         }
 
         // Reference to http://byronsalau.com/blog/how-to-create-a-guid-uuid-in-javascript/
-        function createGuid()
-        {
+        function createGuid() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
                 return v.toString(16);
