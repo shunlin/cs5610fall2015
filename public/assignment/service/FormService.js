@@ -5,10 +5,9 @@
 
     function FormService() {
         var forms = [
-            {username: "Tom", password: "123456", id: 1},
-            {username: "Mike", password: "123456", id: 2},
-            {username: "Jack", password: "654321", id: 3},
-            {username: "Tom", password: "234567", id: 4},
+            {formName: "Registration Form", id: 1, userId: 1},
+            {formName: "Contact List", id: 2, userId: 1},
+            {formName: "To Do List", id: 3, userId: 2},
         ];
 
         var service = {
@@ -28,8 +27,8 @@
 
         function findAllFormsForUser(userId, callback) {
             var result = [];
-            for (var form in forms) {
-                if (form.userId === userId) result.push(form);
+            for (var i in forms) {
+                if (forms[i].userId === userId) result.push(forms[i]);
             }
             callback(result);
         }
@@ -38,6 +37,7 @@
         function deleteFormById(formId, callback) {
             for (var i = 0, len = forms.length; i < len; i++) {
                 if (forms[i].id === formId) forms.splice(i, 1);
+                len = forms.length;
             }
             callback(forms);
         }
@@ -45,7 +45,7 @@
         function updateFormById(formId, newForm, callback) {
             for (var i in forms) {
                 if (forms[i].id === formId) {
-                    forms[i].name = newForm.name;
+                    forms[i].formName = newForm.formName;
                     callback(forms[i]);
                 }
             }
