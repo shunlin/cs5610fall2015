@@ -1,3 +1,5 @@
+"use strict";
+
 (function(){
     angular
         .module("FormBuilderApp")
@@ -5,10 +7,7 @@
 
     function UserService() {
         var users = [
-            {username: "Tom", password: "123456", id: 1},
-            {username: "Mike", password: "123456", id: 2},
-            {username: "Jack", password: "654321", id: 3},
-            {username: "Tom", password: "234567", id: 4},
+            //{username: "Tom", password: "123", id: 1, firstName: "Tommy", lastName: "Gates", email: "TomG@gmail.com"}
         ];
 
         var service = {
@@ -23,7 +22,7 @@
 
         function findUserByUsernameAndPassword(username, password, callback) {
             for (var i in users) {
-                if (users[i].username == username && users[i].password == password)
+                if (users[i].username === username && users[i].password === password)
                     callback(users[i]);
             }
         }
@@ -33,7 +32,7 @@
         }
 
         function createUser(user, callback) {
-            user.id = createGuid();
+            user.id = guid();
             users.push(user);
             callback(user);
         }
@@ -41,6 +40,7 @@
         function deleteUserById(userId, callback) {
             for (var i = 0, len = users.length; i < len; i++) {
                 if (users[i].id === userId) users.splice(i, 1);
+                len = users.length;
             }
             callback(users);
         }
@@ -58,12 +58,14 @@
             }
         }
 
-        // Reference to http://byronsalau.com/blog/how-to-create-a-guid-uuid-in-javascript/
-        function createGuid() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
-                return v.toString(16);
-            });
+        function guid() {
+            function S4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
         }
     }
 })();

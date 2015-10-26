@@ -1,3 +1,5 @@
+"use strict";
+
 (function(){
     angular
         .module("FormBuilderApp")
@@ -5,9 +7,9 @@
 
     function FormService() {
         var forms = [
-            {formName: "Registration Form", id: 1, userId: 1},
-            {formName: "Contact List", id: 2, userId: 1},
-            {formName: "To Do List", id: 3, userId: 2},
+            //{formName: "Registration Form", id: 1, userId: 1},
+            //{formName: "Contact List", id: 2, userId: 1},
+            //{formName: "To Do List", id: 3, userId: 2},
         ];
 
         var service = {
@@ -19,7 +21,7 @@
         return service;
 
         function createFormForUser(userId, form, callback) {
-            form.id = createGuid();
+            form.id = guid();
             form.userId = userId;
             forms.push(form);
             callback(form);
@@ -51,12 +53,14 @@
             }
         }
 
-        // Reference to http://byronsalau.com/blog/how-to-create-a-guid-uuid-in-javascript/
-        function createGuid() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
-                return v.toString(16);
-            });
+        function guid() {
+            function S4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
         }
     }
 })();
