@@ -1,0 +1,61 @@
+.center {
+    width: 740px;
+    min-height: 780px;
+    display: block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+
+#footer {
+    width: 740px;
+    display: block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+.bookBriefly {
+    height: auto;
+    overflow: hidden;
+    border-bottom: 1px dotted rgb(102, 102, 102);
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+p.textLabel, .publishing, .date, .page, p.title, p.brieflycontent, .price, .number, .buyNumber {
+    color: #111;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 18px;
+    margin: 4px 0px;
+}
+
+.sndTitle {
+    color: #060;
+    width: auto;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-style:  normal;
+    font-variant: normal;
+    font-weight: bold;
+    clear: both;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.bookPicBlock {
+    overflow: auto;
+    width: 97px;
+    float: left;
+    margin-right: 10px;
+    min-height: 151px;
+}
