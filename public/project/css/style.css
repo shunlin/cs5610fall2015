@@ -123,7 +123,7 @@ span,p.time {
     width: 30px;
 }
 
-.cartLine {
+.cartLine, .orderLine {
     width: 100%;
     margin: auto;
     text-align: center;
@@ -131,4 +131,8 @@ span,p.time {
 
 #totalPriceInCheckout {
     text-align: right;
+}
+
+#shipInfo {
+    margin-left: 20px;
 }

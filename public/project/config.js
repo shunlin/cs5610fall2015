@@ -45,7 +45,7 @@
                 templateUrl: "orders/orders.view.html"
             })
             .when("/order/:id", {
-                templateUrl: "orders/orders.view.html"
+                templateUrl: "order/order.view.html"
             })
             .when("/allOrders", {
                 templateUrl: "allOrders/allOrders.view.html"
