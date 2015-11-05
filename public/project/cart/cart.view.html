@@ -1,0 +1,61 @@
+<h2>Username's Cart</h2>
+<table class="table table-hover table-hover table-striped">
+    <tr class="cartLine">
+        <th>Image</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Number</th>
+        <th>Sum</th>
+        <th>Edit</th>
+    </tr>
+    <tr class="cartLine">
+        <td class="picture">
+            <img class="bookPicBlock" src="bookPic/1.jpg" />
+        </td>
+        <td class="textLabel"><a href="#/book/1">The Lost Codex (OPSIG Team Black)</a></td>
+        <td class="textLabel">Alan Jacobson</td>
+        <td class="textLabel">$14.21</td>
+        <td id="amount">
+            Available: 200<br />
+            <form class="inputField" action="#/cart" method="post">
+                <input type="text" name="amount" size="6" maxlength="5" value="2" id="newAmount"/>
+                <input type="submit" class="btn btn-primary btn-xs" value="Update">
+            </form>
+        </td>
+        <td>$28.42</td>
+        <td>
+            <button class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+    <tr class="cartLine">
+        <td class="picture">
+            <img class="bookPicBlock" src="bookPic/2.jpg" />
+        </td>
+        <td class="textLabel"><a href="#/book/2">Diary of a Wimpy Kid: Old School</a></td>
+        <td class="textLabel">Jeff Kinney</td>
+        <td class="textLabel">$7.92</td>
+        <td id="amount">
+            Available: 10<br />
+            <form class="inputField" action="#/cart" method="post">
+                <input type="text" name="amount" size="6" maxlength="5" value="1" id="newAmount"/>
+                <input type="submit" class="btn btn-primary btn-xs" value="Update">
+            </form>
+        </td>
+        <td>$7.92</td>
+        <td>
+            <button class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+</table>
+<div id="totalPrice" class="pull-right text-right">
+    <h3>Total: $36.34</h3>
+    <a href="#/checkout"><button class="btn btn-primary">Checkout</button></a>
+</div>
+
+
+
+
+
+
+
