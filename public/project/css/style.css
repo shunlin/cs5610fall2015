@@ -128,3 +128,7 @@ span,p.time {
     margin: auto;
     text-align: center;
 }
+
+#totalPriceInCheckout {
+    text-align: right;
+}
