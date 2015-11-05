@@ -1,37 +1,54 @@
 <h1 class="page-header">Profile</h1>
-<form class="form-horizontal" ng-controller="ProfileController">
+<form class="form-horizontal" action="#/profile" method="post">
+    <h3>Default Shipping Information</h3>
     <div class="form-group">
-        <label for="inputUsername" class="col-sm-2 control-label">Username:</label>
+        <label for="inputShipName" class="col-sm-2 control-label">Full Name:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="user.username">
+            <input type="text" class="form-control" id="inputShipName" placeholder="John Doe">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Password:</label>
+        <label for="inputAddress" class="col-sm-2 control-label">Address:</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="user.password">
+            <input type="text" class="form-control" id="inputAddress" placeholder="Northeastern University, Boston, MA 02111">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputFirstName" class="col-sm-2 control-label">First Name:</label>
+        <label for="inputPhone" class="col-sm-2 control-label">Phone:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" ng-model="user.firstName">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputLastName" class="col-sm-2 control-label">Last Name:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" ng-model="user.lastName">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Email:</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email">
+            <input type="tel" class="form-control" id="inputPhone" placeholder="617-812-3456">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-block btn-primary" ng-click="update()">Update</button>
+        </div>
+    </div>
+</form>
+
+
+<form class="form-horizontal" ng-controller="ProfileController">
+    <h3>Update Password</h3>
+    <div class="form-group">
+        <label for="inputOldPassword" class="col-sm-3 control-label">Old Password:</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" id="inputOldPassword">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-3 control-label">New Password:</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" id="inputPassword" placeholder="New Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword2" class="col-sm-3 control-label">Verify Password:</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" id="inputPassword2" placeholder="Verify Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-5">
             <button type="submit" class="btn btn-block btn-primary" ng-click="update()">Update</button>
         </div>
     </div>

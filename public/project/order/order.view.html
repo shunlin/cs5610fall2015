@@ -1,6 +1,6 @@
 <h2>Order Information</h2>
 <table class="table table-hover table-hover table-striped">
-    <tr class="cartLine">
+    <tr>
         <th>Image</th>
         <th>Title</th>
         <th>Author</th>
@@ -8,7 +8,7 @@
         <th>Number</th>
         <th>Sum</th>
     </tr>
-    <tr class="cartLine">
+    <tr>
         <td class="picture">
             <img class="bookPicBlock" src="bookPic/1.jpg" />
         </td>
@@ -18,7 +18,7 @@
         <td class="textLabel">2</td>
         <td>$28.42</td>
     </tr>
-    <tr class="cartLine">
+    <tr>
         <td class="picture">
             <img class="bookPicBlock" src="bookPic/2.jpg" />
         </td>
@@ -40,6 +40,16 @@
     <p>Price: $36.34</p>
 </div>
 
+
+<h3>Edit Order Status</h3>
+<form class="form-inline" action="#/order/1">
+    <select class="form-control">
+        <option>Processing</option>
+        <option>Shipped</option>
+        <option>Completed</option>
+    </select>
+    <input type="submit" class="btn btn-primary" value="Update">
+</form>
 
 
 

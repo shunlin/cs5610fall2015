@@ -11,7 +11,15 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/admin" ng-class="{'active' : $location.url() == '/admin'}">Admin</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Admin
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/allOrders">All Orders</a></li>
+                        <li><a href="#/addBook">Add New Book</a></li>
+                        <li><a href="#/statistics">Selling Statistics</a></li>
+                    </ul>
+                </li>
                 <li><a href="#/orders" ng-class="{'active' : $location.url() == '/orders'}">Orders</a></li>
                 <li><a href="#/cart" ng-class="{'active' : $location.url() == '/cart'}">Cart</a></li>
                 <li><a href="#/register" ng-class="{'active' : $location.url() == '/register'}">Register</a></li>

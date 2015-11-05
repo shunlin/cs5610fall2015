@@ -32,9 +32,6 @@
             .when("/bookEdit/:id", {
                 templateUrl: "bookEdit/bookEdit.view.html"
             })
-            .when("/addBook", {
-                templateUrl: "addBook/addBook.view.html"
-            })
             .when("/cart", {
                 templateUrl: "cart/cart.view.html"
             })
@@ -49,6 +46,12 @@
             })
             .when("/allOrders", {
                 templateUrl: "allOrders/allOrders.view.html"
+            })
+            .when("/addBook", {
+                templateUrl: "addBook/addBook.view.html"
+            })
+            .when("/statistics", {
+                templateUrl: "statistics/statistics.view.html"
             })
             .otherwise({
                 redirectTo: "/home"
