@@ -1,5 +1,5 @@
 <h1 class="page-header">Profile</h1>
-<form class="form-horizontal" action="#/profile" method="post">
+<form class="form-horizontal" action="#/profile">
     <h3>Default Shipping Information</h3>
     <div class="form-group">
         <label for="inputShipName" class="col-sm-2 control-label">Full Name:</label>
@@ -21,13 +21,13 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-block btn-primary" ng-click="update()">Update</button>
+            <button type="submit" class="btn btn-block btn-primary">Update</button>
         </div>
     </div>
 </form>
 
 
-<form class="form-horizontal" ng-controller="ProfileController">
+<form class="form-horizontal" action="#/profile">
     <h3>Update Password</h3>
     <div class="form-group">
         <label for="inputOldPassword" class="col-sm-3 control-label">Old Password:</label>
@@ -49,7 +49,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-5">
-            <button type="submit" class="btn btn-block btn-primary" ng-click="update()">Update</button>
+            <button type="submit" class="btn btn-block btn-primary">Update</button>
         </div>
     </div>
 </form>

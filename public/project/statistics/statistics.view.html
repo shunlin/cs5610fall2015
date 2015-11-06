@@ -1,0 +1,36 @@
+<script src="statistics/loadGraph.js"></script>
+
+<h1 class="page-header">Selling Statistics</h1>
+<form class="form-inline" action="#/statistics">
+    <div class="form-group">
+        <label for="inputFromDate" class="col-sm-2 control-label">From:</label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" id="inputFromDate">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="intputToDate" class="col-sm-2 control-label">to:</label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" id="intputToDate">
+        </div>
+    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div id="statisCanvas"></div>
+
+<h2>Mosts</h2>
+<table class="table table-hover table-striped">
+    <tr>
+        <td>Best seller in this period</td>
+        <td><a href="#/book/1">Programming Interviews Exposed</a></td>
+    </tr>
+    <tr>
+        <td>Best selling author</td>
+        <td><a href="#/search/Han%20Han">Han Han</a></td>
+    </tr>
+    <tr>
+        <td>Customer buying most books</td>
+        <td>John Doe</td>
+    </tr>
+</table>
+

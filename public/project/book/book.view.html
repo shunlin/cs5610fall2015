@@ -68,23 +68,23 @@
     </div>
 
     <p class="sndTitle">Add New Comment</p>
-    <form class="form-horizontal" ng-controller="BookController">
+    <form class="form-horizontal">
         <div class="form-group">
             <label for="inputTitle" class="col-sm-2 control-label">Comment Title:</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="title">
+                <input type="text" class="form-control" id="inputTitle" placeholder="Title">
             </div>
         </div>
         <div class="form-group">
             <label for="inputContent" class="col-sm-2 control-label">Comment Content:</label>
             <div class="col-sm-8">
-                <textarea class="form-control" id="inputContent" rows="10" placeholder="Comments" ng-model="content"></textarea>
+                <textarea class="form-control" id="inputContent" rows="10" placeholder="Comments"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label for="inputScore" class="col-sm-2 control-label">Score:</label>
             <div class="col-sm-2">
-                <select class="form-control" id="inputScore" ng-model="score">
+                <select class="form-control" id="inputScore">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>

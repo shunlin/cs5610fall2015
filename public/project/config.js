@@ -4,7 +4,6 @@
     angular
         .module("MyBook")
         .config(Configure);
-    $locationProvider.html5Mode(true);
 
     function Configure($routeProvider) {
         $routeProvider
@@ -13,17 +12,17 @@
             })
             .when("/login", {
                 templateUrl: "login/login.view.html",
-                controller: "LoginController"
             })
             .when("/register", {
                 templateUrl: "register/register.view.html",
-                controller: "RegisterController"
             })
             .when("/profile", {
                 templateUrl: "profile/profile.view.html",
-                controller: "ProfileController"
             })
             .when("/search", {
+                templateUrl: "search/search.view.html"
+            })
+            .when("/search/:keyword", {
                 templateUrl: "search/search.view.html"
             })
             .when("/book/:id", {
@@ -51,10 +50,11 @@
                 templateUrl: "addBook/addBook.view.html"
             })
             .when("/statistics", {
-                templateUrl: "statistics/statistics.view.html"
+                templateUrl: "statistics/statistics.view.html",
+                controller: "StatisticsController"
             })
             .otherwise({
                 redirectTo: "/home"
             });
-    }
+        }
 })();
