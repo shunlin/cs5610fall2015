@@ -29,7 +29,7 @@ module.exports = function(app, model) {
     });
 
     app.put("/api/assignment/user/:id", function(req, res) {
-        res.json(model.updateUser(req.body));
+        res.json(model.updateUser(req.params.id, req.body));
     });
 
     app.delete("/api/assignment/user/:id", function(req, res) {

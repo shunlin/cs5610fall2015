@@ -36,9 +36,9 @@ module.exports = function(app) {
         return null;
     }
 
-    function updateUser(userInfo) {
+    function updateUser(userId, userInfo) {
         for (var i in users) {
-            if (users[i].id === userInfo.id) {
+            if (users[i].id === userId) {
                 users[i] = userInfo;
                 return users[i];
             }

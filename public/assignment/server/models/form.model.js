@@ -11,7 +11,8 @@ module.exports = function(app) {
         findById: findFormById,
         updateForm: updateForm,
         deleteForm: deleteForm,
-        findFromByTitle: findFormByTitle
+        findFromByTitle: findFormByTitle,
+        findAllFormsForUser: findAllFormsForUser
     };
     return api;
 
@@ -33,9 +34,9 @@ module.exports = function(app) {
         return null;
     }
 
-    function updateForm(formInfo) {
+    function updateForm(formId, formInfo) {
         for (var i in forms) {
-            if (forms[i].id === formInfo.id) {
+            if (forms[i].id === formId) {
                 forms[i] = formInfo;
                 return forms[i];
             }
@@ -56,5 +57,13 @@ module.exports = function(app) {
                 return forms[i];
         }
         return null;
+    }
+
+    function findAllFormsForUser(userId) {
+        var result = [];
+        for (var i in forms) {
+            if (forms[i].userId === userId) result.push(forms[i]);
+        }
+        return result;
     }
 }
