@@ -12,7 +12,8 @@ module.exports = function(app) {
         updateForm: updateForm,
         deleteForm: deleteForm,
         findFromByTitle: findFormByTitle,
-        findAllFormsForUser: findAllFormsForUser
+        findAllFormsForUser: findAllFormsForUser,
+        findFieldByFieldId: findFieldByFieldId
     };
     return api;
 
@@ -65,5 +66,13 @@ module.exports = function(app) {
             if (forms[i].userId === userId) result.push(forms[i]);
         }
         return result;
+    }
+
+    function findFieldByFieldId(formId, fieldId) {
+        var fields = findFormById(formId).fields;
+        for (var i in fields) {
+            if (fields[i].id === fieldId) return fields[i];
+        }
+        return null;
     }
 }
