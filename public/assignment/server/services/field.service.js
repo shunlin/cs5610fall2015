@@ -9,17 +9,15 @@ module.exports = function(app, model) {
         res.json(model.findFieldByFieldId(req.params.formId, req.params.fieldId));
     });
 
-    app.delete("/api/assignment/form/:formId", function(req, res) {
-        res.json(model.deleteForm(req.params.formId));
+    app.delete("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
+        res.json(model.deleteFieldFromForm(req.params.formId, req.params.fieldId));
     });
 
-    app.post("/api/assignment/user/:userId/form", function(req, res) {
-        var newForm = req.body;
-        newForm.userId = Number(req.params.userId);
-        res.json(model.create(newForm));
+    app.post("/api/assignment/form/:formId/field", function(req, res) {
+        res.json(model.createFieldForForm(req.params.formId, req.body));
     });
 
-    app.put("/api/assignment/form/:formId", function(req, res) {
-        res.json(model.updateForm(req.params.formId, req.body));
+    app.put("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
+        res.json(model.updateFieldForForm(req.params.formId, req.params.fieldId, req.body));
     });
 }
