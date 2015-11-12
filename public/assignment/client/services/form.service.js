@@ -6,12 +6,6 @@
         .factory("FormService", FormService);
 
     function FormService() {
-        var forms = [
-            //{formName: "Registration Form", id: 1, userId: 1},
-            //{formName: "Contact List", id: 2, userId: 1},
-            //{formName: "To Do List", id: 3, userId: 2},
-        ];
-
         var service = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
