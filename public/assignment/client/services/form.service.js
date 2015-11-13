@@ -14,47 +14,37 @@
         };
         return service;
 
-        function createFormForUser(userId, form, callback) {
-            form.id = guid();
-            form.userId = userId;
-            forms.push(form);
-            callback(form);
+        function createFormForUser(userId, form) {
+            var deferred = $q.defer();
+            $http.post("/api/assignment/user/" + userId + "/form", form).success(function(response) {
+                defered.resolve(response);
+            });
+            return deferred.promise;
         }
 
-        function findAllFormsForUser(userId, callback) {
-            var result = [];
-            for (var i in forms) {
-                if (forms[i].userId === userId) result.push(forms[i]);
-            }
-            callback(result);
+        function findAllFormsForUser(userId) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user/" + userId + "/form").success(function(response) {
+                defered.resolve(response);
+            });
+            return deferred.promise;
         }
 
 
-        function deleteFormById(formId, callback) {
-            for (var i = 0, len = forms.length; i < len; i++) {
-                if (forms[i].id === formId) forms.splice(i, 1);
-                len = forms.length;
-            }
-            callback(forms);
+        function deleteFormById(formId) {
+            var deferred = $q.defer();
+            $http.delete("/api/assignment/form/" + formId).success(function(response) {
+                defered.resolve(response);
+            });
+            return deferred.promise;
         }
 
-        function updateFormById(formId, newForm, callback) {
-            for (var i in forms) {
-                if (forms[i].id === formId) {
-                    forms[i].formName = newForm.formName;
-                    callback(forms[i]);
-                }
-            }
-        }
-
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                s4() + '-' + s4() + s4() + s4();
+        function updateFormById(formId, newForm) {
+            var deferred = $q.defer();
+            $http.put("/api/assignment/form/" + formId, newForm).success(function(response) {
+                defered.resolve(response);
+            });
+            return deferred.promise;
         }
     }
 })();
