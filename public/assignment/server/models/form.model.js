@@ -84,7 +84,7 @@ module.exports = function(app) {
             if (fields[i].id == fieldId) fields.splice(i, 1);
             len = fields.length;
         }
-        return forms;
+        return fields;
     }
 
     function createFieldForForm(formId, fieldInfo) {

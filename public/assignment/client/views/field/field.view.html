@@ -42,39 +42,10 @@
             <input type="email" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
         </div>
         <div class="btn-group col-sm-4 col-sm-offset-4">
-            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-            <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-            <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-        </div>
-    </div>
-
-
-
-
-
-    <!--div class="form-group">
-    <div class="form-group">
-        <label class="control-label">License Agreement:</label>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="licenseRadios" id="licenseRadios1" value="yes" checked>Yes
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="licenseRadios" id="licenseRadios2" value="no">No
-                    </label>
-                </div>
-            </div>
-            <div class="btn-group pull-right">
-                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
+            <a><span class="glyphicon glyphicon-pencil"></span></a>
+            <a><span class="glyphicon glyphicon-plus"></span></a>
+            <a ng-click="model.removeField(field)"><span class="glyphicon glyphicon-remove"></span></a>
+            <a><span class="glyphicon glyphicon-menu-hamburger"></span></a>
         </div>
     </div>
     <hr>
@@ -82,22 +53,20 @@
         <label for="inputNewField" class="control-label">Add New Field:</label>
         <div class="row">
             <div class="col-sm-6">
-                <select class="form-control" id="inputNewField">
-                    <option>Single Line Text</option>
-                    <option>Date</option>
-                    <option>Dropdown</option>
-                    <option>Checkboxes</option>
-                    <option>Radio buttons</option>
-                    <option>Paragraph Text Field</option>
+                <select class="form-control" id="inputNewField" ng-model="model.fieldType">
+                    <option value="SingleLineText" selected>Single Line Text</option>
+                    <option value="MultiLineText">Paragraph Text Field</option>
+                    <option value="Date">Date</option>
+                    <option value="Dropdown">Dropdown</option>
+                    <option value="Checkboxes">Checkboxes</option>
+                    <option value="RadioButtons">Radio buttons</option>
                 </select>
             </div>
-            <div class="btn-group pull-right">
-                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+            <div class="btn-group col-sm-4 col-sm-offset-2">
+                <a ng-click="model.addField(model.fieldType)"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
         </div>
-    </div-->
-
-
-
+    </div>
     <button type="submit" class="btn btn-default">Save</button>
 </form>
+
