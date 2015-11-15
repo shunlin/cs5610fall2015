@@ -5,21 +5,22 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, $location, UserService) {
-        $scope.$location = $location;
-        $scope.register = register;
-        $scope.user = {};
+    function RegisterController($rootScope, $location, UserService) {
+        var model = this;
+        model.$location = $location;
+        model.register = register;
+        model.user = {};
 
         function register() {
-            if ($scope.user.password != $scope.user.password2) alert("Password not match!");
+            if (model.user.password != model.user.password2) alert("Password not match!");
             else {
                 UserService.createUser(
-                    $scope.user,
+                    model.user).then(
                     function(user) {
                         $rootScope.loginUser = user;
                         $location.url('/profile');
                     }
-                )
+                );
             }
         }
     }
