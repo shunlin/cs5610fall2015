@@ -6,8 +6,8 @@ module.exports = function(app, model) {
     });
 
     app.get("/api/assignment/user", function(req, res) {
-        var username = req.param("username");
-        var password = req.param("password");
+        var username = req.query.username;
+        var password = req.query.password;
         if (username == null && password == null) {
             res.json(model.findAll());
             return;
@@ -29,11 +29,12 @@ module.exports = function(app, model) {
     });
 
     app.put("/api/assignment/user/:id", function(req, res) {
-        res.json(model.updateUser(req.params.id, req.body));
+        console.log(req.body);
+        res.json(model.update(req.params.id, req.body));
     });
 
     app.delete("/api/assignment/user/:id", function(req, res) {
-        res.json(model.deleteUser(req.params.id));
+        res.json(model.delete(req.params.id));
     });
 
 }

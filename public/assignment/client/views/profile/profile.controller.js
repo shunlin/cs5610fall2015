@@ -5,20 +5,21 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, $location, UserService) {
-        $scope.$location = $location;
-        $scope.update = update;
-        $scope.loginUser = $rootScope.loginUser;
-        $scope.user = {};
+    function ProfileController($rootScope, $location, UserService) {
+        var model = this;
+        model.$location = $location;
+        model.update = update;
+        model.loginUser = $rootScope.loginUser;
+        model.user = {};
 
         function update() {
             UserService.updateUser(
-                $scope.loginUser.id,
-                $scope.user,
+                model.loginUser.id,
+                model.user).then(
                 function(user) {
                     console.log(user);
                 }
-            )
+            );
         }
     }
 })();

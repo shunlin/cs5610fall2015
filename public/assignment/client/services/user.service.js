@@ -12,8 +12,7 @@
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser,
-
+            updateUser: updateUser
         };
         return service;
 
@@ -52,7 +51,7 @@
 
         function updateUser(userId, userInfo) {
             var deferred = $q.defer();
-            $http.put("/api/assignment/user" + userId, userInfo).success(function(response) {
+            $http.put("/api/assignment/user/" + userId, userInfo).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;

@@ -19,12 +19,13 @@
     <script src="views/form/form.controller.js"></script>
     <script src="services/user.service.js"></script>
     <script src="services/form.service.js"></script>
+    <script src="services/field.service.js"></script>
 </head>
 <body>
-<div ng-include="'header/header.view.html'"></div>
+<div ng-include="'views/header/header.view.html'"></div>
 <div class="container-fluid">
     <div class="row">
-        <div ng-include="'sidebar/sidebar.view.html'"></div>
+        <div ng-include="'views/sidebar/sidebar.view.html'"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>
     </div>
 </div>
