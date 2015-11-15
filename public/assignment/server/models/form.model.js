@@ -22,6 +22,7 @@ module.exports = function(app) {
 
     function createForm(form) {
         form.id = uuid.v1();
+        form.fields = [];
         forms.push(form);
         return form;
     }
@@ -88,7 +89,9 @@ module.exports = function(app) {
     }
 
     function createFieldForForm(formId, fieldInfo) {
-        var fields = findFormById(formId).fields;
+        var form = findFormById(formId);
+        //if (form.fields == null) form.fields = [];
+        var fields = form.fields;
         fieldInfo.id = uuid.v1();
         fields.push(fieldInfo);
         return fields;
