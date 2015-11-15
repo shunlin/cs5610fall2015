@@ -1,7 +1,7 @@
 <h1 class="page-header">Forms</h1>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
-    <li role="presentation"><a href="form-fields.html">Fields</a></li>
+    <li role="presentation" class="active"><a href="#/form">Forms</a></li>
+    <li role="presentation"><a>Fields</a></li>
 </ul>
 <table class="table table-striped" ng-controller="FormController">
     <thead>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="form in model.forms">
-        <td>{{form.title}}</td>
+        <td><a href="#/user/{{model.userId}}/form/{{form.id}}/fields">{{form.title}}</td>
         <td>
             <div class="btn-group pull-right">
                 <a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>

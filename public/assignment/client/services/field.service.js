@@ -12,7 +12,7 @@
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
             updateField: updateField,
-
+            getForm: getForm
         };
         return service;
 
@@ -52,6 +52,14 @@
         function updateField(formId, fieldId, field) {
             var deferred = $q.defer();
             $http.put("/api/assignment/form/" + formId + "/field/" + fieldId, field).success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
+        function getForm(formId) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/form/" + formId).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;

@@ -1,0 +1,103 @@
+<h1 class="page-header">Form: {{model.formName}}</h1>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/form">Forms</a></li>
+    <li role="presentation" class="active"><a>Fields</a></li>
+</ul>
+<form ng-controller="FieldController">
+    <div class="row form-group" ng-repeat="field in model.fields" ng-switch="field.type">
+        <div ng-switch-when="TEXT" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <input type="text" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
+        </div>
+        <div ng-switch-when="TEXTAREA" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <textarea class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}"></textarea>
+        </div>
+        <div ng-switch-when="DATE" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <input type="date" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
+        </div>
+        <div ng-switch-when="OPTIONS" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <select class="form-control" id="field{{field.id}}}">
+                <option ng-repeat="option in field.options" value="{{option.value}}">{{option.label}}</option>
+            </select>
+        </div>
+        <div ng-switch-when="CHECKBOXES" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <div class="checkbox" ng-repeat="option in field.options">
+                <label><input type="checkbox" value="{{option.value}}">{{option.label}}</label>
+            </div>
+        </div>
+        <div ng-switch-when="RADIOS" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <div class="radio" ng-repeat="option in field.options">
+                <label>
+                    <input type="radio" name="radio{{field.id}}}" id="field{{field.id}}" value="{{field.value}}">{{field.label}}
+                </label>
+            </div>
+        </div>
+        <div ng-switch-when="EMAIL" class="col-sm-4">
+            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+            <input type="email" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
+        </div>
+        <div class="btn-group col-sm-4 col-sm-offset-4">
+            <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+            <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+        </div>
+    </div>
+
+
+
+
+
+    <!--div class="form-group">
+    <div class="form-group">
+        <label class="control-label">License Agreement:</label>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="licenseRadios" id="licenseRadios1" value="yes" checked>Yes
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="licenseRadios" id="licenseRadios2" value="no">No
+                    </label>
+                </div>
+            </div>
+            <div class="btn-group pull-right">
+                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label for="inputNewField" class="control-label">Add New Field:</label>
+        <div class="row">
+            <div class="col-sm-6">
+                <select class="form-control" id="inputNewField">
+                    <option>Single Line Text</option>
+                    <option>Date</option>
+                    <option>Dropdown</option>
+                    <option>Checkboxes</option>
+                    <option>Radio buttons</option>
+                    <option>Paragraph Text Field</option>
+                </select>
+            </div>
+            <div class="btn-group pull-right">
+                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+        </div>
+    </div-->
+
+
+
+    <button type="submit" class="btn btn-default">Save</button>
+</form>

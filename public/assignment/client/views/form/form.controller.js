@@ -14,6 +14,7 @@
         model.selectForm = selectForm;
 
         var userId = $rootScope.loginUser.id;
+        model.userId = userId;
 
         FormService.findAllFormsForUser(userId).then(function(forms) {
             model.forms = forms;
