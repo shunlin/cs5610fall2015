@@ -10,22 +10,22 @@
         <th><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> Action</th>
     </tr>
     <tr>
-        <th><input type="text" class="form-control" id="inputName" placeholder="name" ng-model="newFormName"/></th>
+        <th><input type="text" class="form-control" id="inputName" placeholder="name" ng-model="model.newTitle"/></th>
         <th>
             <div class="btn-group pull-right">
-                <a ng-click="addForm()"><span class="glyphicon glyphicon-plus"></span></a>
-                <a ng-click="updateForm()"><span class="glyphicon glyphicon-ok"></span></a>
+                <a ng-click="model.addForm()"><span class="glyphicon glyphicon-plus"></span></a>
+                <a ng-click="model.updateForm()"><span class="glyphicon glyphicon-ok"></span></a>
             </div>
         </th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="form in forms">
-        <td>{{form.formName}}</td>
+    <tr ng-repeat="form in model.forms">
+        <td>{{form.title}}</td>
         <td>
             <div class="btn-group pull-right">
-                <a ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
-                <a ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a>
             </div>
         </td>
     </tr>

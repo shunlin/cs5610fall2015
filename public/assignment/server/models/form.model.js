@@ -23,7 +23,7 @@ module.exports = function(app) {
     function createForm(form) {
         form.id = uuid.v1();
         forms.push(form);
-        return forms;
+        return form;
     }
 
     function findAllForms() {
@@ -39,12 +39,11 @@ module.exports = function(app) {
     }
 
     function updateForm(formId, formInfo) {
-        for (var i in forms) {
-            if (forms[i].id == formId) {
-                forms[i] = formInfo;
-                return forms[i];
-            }
+        var form = findFormById(formId);
+        for (var i in formInfo) {
+            form[i] = formInfo[i];
         }
+        return form;
     }
 
     function deleteForm(formId) {
