@@ -25,6 +25,8 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "~3.4.4",
+    "kerberos": "0.0.17",
+    "mongoose": "^4.2.6",
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {},
