@@ -1,13 +1,10 @@
 .center {
-    width: 740px;
-    min-height: 780px;
     display: block;
     vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
     height: auto;
 }
-
 
 #footer {
     width: 740px;
