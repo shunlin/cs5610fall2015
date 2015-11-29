@@ -1,26 +1,41 @@
 "use strict";
 
 module.exports = function(app, model) {
-    app.get("/api/assignment/user/:userId/form", function(req, res) {
-        res.json(model.findAllFormsForUser(req.params.userId));
-    });
+    app.get("/api/assignment/user/:userId/form", findFormsForUser);
+    app.get("/api/assignment/form/:formId", findFormById);
+    app.delete("/api/assignment/form/:formId", deleteForm);
+    app.post("/api/assignment/user/:userId/form", createForm);
+    app.put("/api/assignment/form/:formId", updateForm);
 
-    app.get("/api/assignment/form/:formId", function(req, res) {
-        res.json(model.findById(req.params.formId));
-    });
+    function findFormsForUser(req, res) {
+        model.findAllFormsForUser(req.params.userId).then(function(forms) {
+            res.json(forms);
+        });
+    }
 
-    app.delete("/api/assignment/form/:formId", function(req, res) {
-        res.json(model.deleteForm(req.params.formId));
-    });
+    function findFormById(req, res) {
+        model.findById(req.params.formId).then(function(form) {
+            res.json(form);
+        })
+    }
 
-    app.post("/api/assignment/user/:userId/form", function(req, res) {
+    function deleteForm(req, res) {
+        model.deleteForm(req.params.formId).then(function(forms) {
+            res.json(forms);
+        })
+    }
+
+    function createForm(req, res) {
         var newForm = req.body;
         newForm.userId = Number(req.params.userId);
-        console.log(newForm);
-        res.json(model.create(newForm));
-    });
+        model.create(newForm).then(function(form) {
+            res.json(form);
+        });
+    }
 
-    app.put("/api/assignment/form/:formId", function(req, res) {
-        res.json(model.updateForm(req.params.formId, req.body));
-    });
-}
+    function updateForm(req, res) {
+        model.updateForm(req.params.formId, req.body).then(function(form) {
+            res.json(from);
+        });
+    }
+};
