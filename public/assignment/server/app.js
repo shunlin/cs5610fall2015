@@ -1,8 +1,8 @@
 "use strict";
 
-module.exports = function(app) {
-    var users = require("./models/user.model.js")(app);
-    var forms = require("./models/form.model.js")(app);
+module.exports = function(app, db, mongoose) {
+    var users = require("./models/user.model.js")(app, db, mongoose);
+    var forms = require("./models/form.model.js")(app, db, mongoose);
 
     require("./services/user.service.js")(app, users);
     require("./services/form.service.js")(app, forms);

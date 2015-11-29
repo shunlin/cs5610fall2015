@@ -2,8 +2,9 @@
 
 var uuid = require("node-uuid");
 
-module.exports = function(app) {
-    var users = require("./user.mock.json");
+module.exports = function(app, mongoose, $q) {
+    var UserSchema = require("./user.schema.js")(app, mongoose);
+    var UserModel = mongoose.model("UserModel", UserSchema)
 
     var api = {
         create: createUser,
@@ -17,6 +18,8 @@ module.exports = function(app) {
     return api;
 
     function createUser(user) {
+        var deferred = $q.defer();
+
         user.id = uuid.v1();
         users.push(user);
         return user;
