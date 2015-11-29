@@ -39,7 +39,7 @@ module.exports = function(app, mongoose) {
     }
 
     function findById(userId) {
-        var deferred = $q.defer();
+        var deferred = q.defer();
         UserModel.find({_id: userId}, function(err, user) {
             if (err) deferred.reject(err);
             else deferred.resolve(user);
@@ -49,19 +49,21 @@ module.exports = function(app, mongoose) {
     }
 
     function updateUser(userId, userInfo) {
-        var deferred = $q.defer();
-        UserModel.update(
+        var deferred = q.defer();
+        console.log(userId);
+        console.log(userInfo);
+        UserModel.findByIdAndUpdate(
+            userId,
             {
-                _id: userId},
-            {
-                $set: {
-                    firstName: userInfo.firstName,
-                    lastName: userInfo.lastName,
-                    password: userInfo.password,
-                    email: userInfo.email
-                }
+                firstName: userInfo.firstName,
+                lastName: userInfo.lastName,
+                password: userInfo.password,
+                email: userInfo.email,
+                username: userInfo.username
             },
             function(err, user) {
+                console.log(err);
+                console.log(user);
                 if (err) deferred.reject(err);
                 else deferred.resolve(user);
             }
@@ -72,10 +74,12 @@ module.exports = function(app, mongoose) {
 
     function deleteUser(userId) {
         var deferred = q.defer();
-        UserModel.remove({_id: userId}, function(err, res) {
+        UserModel.findByIdAndRemove(userId, function(err, res) {
             if (err) deferred.reject(err);
-            else deferred.resolve(res);
-        })
+            else UserModel.find(function(err, users) {
+                deferred.resolve(users);
+            })
+        });
 
         return deferred.promise;
     }
@@ -85,7 +89,7 @@ module.exports = function(app, mongoose) {
         UserModel.findOne({username: username}, function(err, user) {
             if (err) deferred.reject(err);
             else deferred.resolve(user);
-        })
+        });
 
         return deferred.promise;
     }
@@ -98,7 +102,7 @@ module.exports = function(app, mongoose) {
         }, function(err, user) {
             if (err) deferred.reject(err);
             else deferred.resolve(user);
-        })
+        });
 
         return deferred.promise;
     }

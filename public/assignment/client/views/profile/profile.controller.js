@@ -14,7 +14,7 @@
 
         function update() {
             UserService.updateUser(
-                model.loginUser.id,
+                model.loginUser._id,
                 model.user).then(
                 function(user) {
                     console.log(user);

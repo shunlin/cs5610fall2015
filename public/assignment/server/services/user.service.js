@@ -1,40 +1,57 @@
 "use strict";
 
 module.exports = function(app, model) {
-    app.post("/api/assignment/user", function(req, res) {
-        res.json(model.create(req.body));
-    });
+    app.post("/api/assignment/user", createUser);
+    app.get("/api/assignment/user", getUser);
+    app.get("/api/assignment/user/:id", getUserById);
+    app.put("/api/assignment/user/:id", updateUser);
+    app.delete("/api/assignment/user/:id", deleteUser);
 
-    app.get("/api/assignment/user", function(req, res) {
+    function createUser(req, res) {
+        model.create(req.body).then(function(user) {
+            res.json(user);
+        });
+    }
+
+    function getUser(req, res) {
         var username = req.query.username;
         var password = req.query.password;
         if (username == null && password == null) {
-            res.json(model.findAll());
+            model.findAll().then(function(users) {
+                res.json(users);
+            });
             return;
         }
         if (password == null) {
-            res.json(model.findUserByUsername(username));
+            model.findUserByUsername(username).then(function(user) {
+                res.json(user);
+            });
             return;
         }
         var cred = {
             username: username,
             password: password
         };
-        res.json(model.findUserByCredentials(cred));
+        model.findUserByCredentials(cred).then(function(user) {
+            res.json(user);
+        });
+    }
 
-    });
+   function getUserById(req, res) {
+       model.findById(req.params.id).then(function(user) {
+           res.json(user);
+       })
+    }
 
-    app.get("/api/assignment/user/:id", function(req, res) {
-        res.json(model.findById(req.params.id));
-    });
+    function updateUser(req, res) {
+        model.update(req.params.id, req.body).then(function(user) {
+            res.json(user);
+        });
+    }
 
-    app.put("/api/assignment/user/:id", function(req, res) {
-        console.log(req.body);
-        res.json(model.update(req.params.id, req.body));
-    });
-
-    app.delete("/api/assignment/user/:id", function(req, res) {
-        res.json(model.delete(req.params.id));
-    });
-
-}
+    function deleteUser(req, res) {
+        model.delete(req.params.id).then(function(users) {
+            res.json(users);
+        });
+    }
+};
