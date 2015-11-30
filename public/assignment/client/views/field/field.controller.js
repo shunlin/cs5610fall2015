@@ -27,19 +27,19 @@
             fieldValueMap["SingleLineText"] = {
                 "id": null,
                 "label": "New Text Field",
-                "type": "TEXT",
+                "fieldType": "TEXT",
                 "placeholder": "New Field"
             };
             fieldValueMap["MultiLineText"] = {
                 "id": null,
                 "label": "New Text Field",
-                "type": "TEXTAREA",
+                "fieldType": "TEXTAREA",
                 "placeholder": "New Field"
             };
-            fieldValueMap["Date"] = {"id": null, "label": "New Date Field", "type": "DATE"};
+            fieldValueMap["Date"] = {"id": null, "label": "New Date Field", "fieldType": "DATE"};
             fieldValueMap["Dropdown"] =
             {
-                "id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                "id": null, "label": "New Dropdown", "fieldType": "SELECT", "options": [
                 {"label": "Option 1", "value": "OPTION_1"},
                 {"label": "Option 2", "value": "OPTION_2"},
                 {"label": "Option 3", "value": "OPTION_3"}
@@ -47,7 +47,7 @@
             };
             fieldValueMap["Checkboxes"] =
             {
-                "id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                "id": null, "label": "New Checkboxes", "fieldType": "CHECKBOX", "options": [
                 {"label": "Option A", "value": "OPTION_A"},
                 {"label": "Option B", "value": "OPTION_B"},
                 {"label": "Option C", "value": "OPTION_C"}
@@ -55,7 +55,7 @@
             };
             fieldValueMap["RadioButtons"] =
             {
-                "id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                "id": null, "label": "New Radio Buttons", "fieldType": "RADIO", "options": [
                 {"label": "Option X", "value": "OPTION_X"},
                 {"label": "Option Y", "value": "OPTION_Y"},
                 {"label": "Option Z", "value": "OPTION_Z"}
@@ -76,7 +76,7 @@
 
         function removeField(field) {
             FieldService.deleteFieldFromForm(
-                formId, field.id).then(
+                formId, field._id).then(
                 function (fields) {
                     model.fields = fields;
                 }

@@ -2,7 +2,7 @@
 
 module.exports = function(app, mongoose) {
     var FieldSchema = mongoose.Schema({
-        "label": String,
+        label: String,
         fieldType: {
             type: String,
             enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
@@ -12,8 +12,6 @@ module.exports = function(app, mongoose) {
             value: String
         }],
         placeholder: String
-    }, {
-        collection: "cs5610.assignment.field"
     });
     return FieldSchema;
 };

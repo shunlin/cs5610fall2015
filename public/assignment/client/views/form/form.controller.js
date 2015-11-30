@@ -13,7 +13,7 @@
         model.deleteForm = deleteForm;
         model.selectForm = selectForm;
 
-        var userId = $rootScope.loginUser.id;
+        var userId = $rootScope.loginUser._id;
         model.userId = userId;
 
         FormService.findAllFormsForUser(userId).then(function(forms) {
@@ -36,18 +36,17 @@
             var newForm = {};
             newForm.title = model.newTitle;
             FormService.updateFormById(
-                model.selectedForm.id,
+                model.selectedForm._id,
                 newForm).then(
                     function(form) {
                         model.selectedForm.title = form.title;
-                        //console.log($scope.forms);
                     }
             );
         }
 
         function deleteForm(index) {
             FormService.deleteFormById(
-                model.forms[index].id).then(
+                model.forms[index]._id).then(
                     function(forms) {
                         model.forms.splice(index, 1);
                         console.log(model.forms);

@@ -4,42 +4,42 @@
     <li role="presentation" class="active"><a>Fields</a></li>
 </ul>
 <form ng-controller="FieldController">
-    <div class="row form-group" ng-repeat="field in model.fields" ng-switch="field.type">
+    <div class="row form-group" ng-repeat="field in model.fields" ng-switch="field.fieldType">
         <div ng-switch-when="TEXT" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
-            <input type="text" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
+            <input type="text" class="form-control" id="field{{field._id}}}" placeholder="{{field.placeholder}}">
         </div>
         <div ng-switch-when="TEXTAREA" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
-            <textarea class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}"></textarea>
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
+            <textarea class="form-control" id="field{{field._id}}}" placeholder="{{field.placeholder}}"></textarea>
         </div>
         <div ng-switch-when="DATE" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
-            <input type="date" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
+            <input type="date" class="form-control" id="field{{field._id}}}" placeholder="{{field.placeholder}}">
         </div>
-        <div ng-switch-when="OPTIONS" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
-            <select class="form-control" id="field{{field.id}}}">
+        <div ng-switch-when="SELECT" class="col-sm-4">
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
+            <select class="form-control" id="field{{field._id}}}">
                 <option ng-repeat="option in field.options" value="{{option.value}}">{{option.label}}</option>
             </select>
         </div>
-        <div ng-switch-when="CHECKBOXES" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+        <div ng-switch-when="CHECKBOX" class="col-sm-4">
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
             <div class="checkbox" ng-repeat="option in field.options">
                 <label><input type="checkbox" value="{{option.value}}">{{option.label}}</label>
             </div>
         </div>
-        <div ng-switch-when="RADIOS" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
+        <div ng-switch-when="RADIO" class="col-sm-4">
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
             <div class="radio" ng-repeat="option in field.options">
                 <label>
-                    <input type="radio" name="radio{{field.id}}}" id="field{{field.id}}" value="{{field.value}}">{{field.label}}
+                    <input type="radio" name="radio{{field._id}}}" id="field{{field._id}}" value="{{field.value}}">{{field.label}}
                 </label>
             </div>
         </div>
         <div ng-switch-when="EMAIL" class="col-sm-4">
-            <label for="field{{field.id}}" class="control-label">{{field.label}}:</label>
-            <input type="email" class="form-control" id="field{{field.id}}}" placeholder="{{field.placeholder}}">
+            <label for="field{{field._id}}" class="control-label">{{field.label}}:</label>
+            <input type="email" class="form-control" id="field{{field._id}}" placeholder="{{field.placeholder}}">
         </div>
         <div class="btn-group col-sm-4 col-sm-offset-4">
             <a><span class="glyphicon glyphicon-pencil"></span></a>

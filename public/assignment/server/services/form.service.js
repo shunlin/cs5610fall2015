@@ -27,15 +27,15 @@ module.exports = function(app, model) {
 
     function createForm(req, res) {
         var newForm = req.body;
-        newForm.userId = Number(req.params.userId);
+        newForm.userId = req.params.userId;
         model.create(newForm).then(function(form) {
             res.json(form);
         });
     }
 
     function updateForm(req, res) {
-        model.updateForm(req.params.formId, req.body).then(function(form) {
-            res.json(from);
+        model.updateForm(req.params.formId, req.body).then(function(forms) {
+            res.json(forms);
         });
     }
 };

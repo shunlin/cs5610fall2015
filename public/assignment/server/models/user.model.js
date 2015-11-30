@@ -5,7 +5,7 @@ var q = require("q");
 
 module.exports = function(app, mongoose) {
     var UserSchema = require("./user.schema.js")(app, mongoose);
-    var UserModel = mongoose.model("UserModel", UserSchema)
+    var UserModel = mongoose.model("UserModel", UserSchema);
 
     var api = {
         create: createUser,
@@ -50,8 +50,6 @@ module.exports = function(app, mongoose) {
 
     function updateUser(userId, userInfo) {
         var deferred = q.defer();
-        console.log(userId);
-        console.log(userInfo);
         UserModel.findByIdAndUpdate(
             userId,
             {
@@ -62,8 +60,6 @@ module.exports = function(app, mongoose) {
                 username: userInfo.username
             },
             function(err, user) {
-                console.log(err);
-                console.log(user);
                 if (err) deferred.reject(err);
                 else deferred.resolve(user);
             }
