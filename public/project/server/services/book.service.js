@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(app, model) {
-    app.post("/api/project/book/:bookId", createBook);
+    app.post("/api/project/book/", createBook);
     app.post("/api/project/book/", findAllBooks);
     app.get("/api/project/book/:bookId", findBookById);
     app.put("/api/project/book/:bookId", updateBook);

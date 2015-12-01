@@ -10,6 +10,7 @@ module.exports = function(app, mongoose) {
         create: createBook,
         findAll: findAllBooks,
         findById: findById,
+        findByISBN: findByISBN,
         update: updateBook,
         delete: deleteBook,
         findBooksByTitle: findBooksByTitle,
@@ -41,6 +42,16 @@ module.exports = function(app, mongoose) {
     function findById(bookId) {
         var deferred = q.defer();
         BookModel.findById(bookId, function(err, book) {
+            if (err) deferred.reject(err);
+            else deferred.resolve(book);
+        });
+
+        return deferred.promise;
+    }
+
+    function findByISBN(isbn) {
+        var deferred = q.defer();
+        BookModel.findOne({isbn: isbn}, function(err, book) {
             if (err) deferred.reject(err);
             else deferred.resolve(book);
         });

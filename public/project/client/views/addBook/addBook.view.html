@@ -1,69 +1,44 @@
 <h1 class="page-header">Add New Book</h1>
-<form class="form-horizontal" action="#/book/1">
+<form class="form-horizontal" ng-controller="AddBookController">
     <div class="form-group">
-        <label for="inputTitle" class="col-sm-2 control-label">Title:</label>
+        <label for="inputISBN" class="col-sm-2 control-label">ISBN:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputTitle" placeholder="Book Title">
+            <input type="text" class="form-control" id="inputISBN" placeholder="Book ISBN" ng-model="model.newBook.isbn">
         </div>
     </div>
     <div class="form-group">
         <label for="inputAuthor" class="col-sm-2 control-label">Author:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAuthor" placeholder="Author">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputPublisher" class="col-sm-2 control-label">Publisher:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPublisher" placeholder="Publisher">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputPublishedDate" class="col-sm-2 control-label">Published Date:</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="inputPublishedDate">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputPages" class="col-sm-2 control-label">Pages:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPages" placeholder="Pages">
+            <input type="text" class="form-control" id="inputAuthor" placeholder="Author" ng-model="model.newBook.authorString">
         </div>
     </div>
     <div class="form-group">
         <label for="inputPrice" class="col-sm-2 control-label">Price($):</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPrice" placeholder="Price">
+            <input type="text" class="form-control" id="inputPrice" placeholder="Price" ng-model="model.newBook.price">
         </div>
     </div>
     <div class="form-group">
         <label for="inputAvailable" class="col-sm-2 control-label">Available:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAvailable" placeholder="Available">
+            <input type="text" class="form-control" id="inputAvailable" placeholder="Available" ng-model="model.newBook.quantity">
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputImage" class="col-sm-2 control-label">Image:</label>
-        <div class="col-sm-5">
-            <input type="file" class="form-control" id="inputImage">
-        </div>
-    </div>
-
     <div class="form-group">
         <label for="inputAuthorInfo" class="col-sm-2 control-label">Author Info:</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="6" id="inputAuthorInfo" placeholder="Author Info"></textarea>
+            <textarea class="form-control" rows="6" id="inputAuthorInfo" placeholder="Author Info" ng-model="model.newBook.authorIntro"></textarea>
         </div>
     </div>
     <div class="form-group">
         <label for="inputBookDesc" class="col-sm-2 control-label">Book Description:</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="10" id="inputBookDesc" placeholder="Book Description"></textarea>
+            <textarea class="form-control" rows="10" id="inputBookDesc" placeholder="Book Description" ng-model="model.newBook.description"></textarea>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-block btn-primary">Create</button>
+            <button class="btn btn-block btn-primary" ng-click="model.addBook()">Create</button>
         </div>
     </div>
 </form>

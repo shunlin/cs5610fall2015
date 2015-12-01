@@ -49,7 +49,9 @@
                 templateUrl: "views/allOrders/allOrders.view.html"
             })
             .when("/addBook", {
-                templateUrl: "views/addBook/addBook.view.html"
+                templateUrl: "views/addBook/addBook.view.html",
+                controller: "AddBookController",
+                controllerAs: "model"
             })
             .when("/statistics", {
                 templateUrl: "views/statistics/statistics.view.html",
