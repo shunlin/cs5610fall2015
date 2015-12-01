@@ -25,8 +25,10 @@
             .when("/search/:keyword", {
                 templateUrl: "views/search/search.view.html"
             })
-            .when("/book/:id", {
-                templateUrl: "views/book/book.view.html"
+            .when("/book/:bookId", {
+                templateUrl: "views/book/book.view.html",
+                controller: "BookController",
+                controllerAs: "model"
             })
             .when("/bookEdit/:id", {
                 templateUrl: "views/bookEdit/bookEdit.view.html"

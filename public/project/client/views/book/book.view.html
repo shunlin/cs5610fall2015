@@ -1,102 +1,92 @@
-<div id="bookDetail">
-    <h2 class="page-header">The Lost Codex (OPSIG Team Black)</h2>
-    <div class="bookInfoBlock">
-        <div class="bookPicLarge">
-            <img class="img-responsive" src="bookPic/1.jpg" /></a>
-        </div>
-        <p class="textLabel">
-            <span>Author</span>: Alan Jacobson
-        </p>
-        <p class="textLabel">
-            <span>Publisher</span>: Open Road Media Mystery & Thriller
-        </p>
-        <p class="textLabel">
-            <span>Published Date</span>: November 3, 2015
-        </p>
-        <p class="textLabel">
-            <span>Pages</span>: 428
-        </p>
-        <p class="textLabel">
-            <span>Price</span>: 14.21
-        </p>
-        <p class="textLabel">
-            <span>Available</span>: 200
-        </p>
-        <form class="form">
-            <div class="form-group">
-                <label for="buyNumber" class="col-sm-2 control-label">Number:</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="buyNumber" placeholder="1">
-                </div>
+<div ng-controller="BookController">
+    <div id="bookDetail">
+        <h2 class="page-header">{{model.bookInfo.title}}</h2>
+        <div class="bookInfoBlock">
+            <div class="bookPicLarge">
+                <img class="img-responsive" src="{{model.bookInfo.image}}" /></a>
             </div>
+            <p class="textLabel">
+                <span>Author</span>: {{model.bookInfo.author}}
+            </p>
+            <p class="textLabel">
+                <span>Publisher</span>: {{model.bookInfo.publisher}}
+            </p>
+            <p class="textLabel">
+                <span>Published Date</span>: {{model.bookInfo.date}}
+            </p>
+            <p class="textLabel">
+                <span>Pages</span>: {{model.bookInfo.page}}
+            </p>
+            <p class="textLabel">
+                <span>Price</span>: {{model.bookInfo.price}}
+            </p>
+            <p class="textLabel">
+                <span>Available</span>: {{model.bookInfo.quantity}}
+            </p>
             <a href="#/cart"><button type="submit" class="btn btn-primary">Add To Cart</button></a>
             <a href="#/home"><button class="btn btn-danger">Delete</button></a>
             <a href="#/bookEdit/1"><button class="btn btn-primary">Edit</button></a>
+        </div>
+
+        <div class="sndTitle">Author</div>
+        <p class="authorIntro">
+            {{model.bookInfo.authorIntro}}
+        </p>
+        <div class="sndTitle">Description</div>
+        <p class="content">
+            {{model.bookInfo.description}}</p>
+    </div>
+    <div id="comment">
+        <p class="sndTitle">Comments</p>
+        <div class="commentList">
+            <div class="commentBriefly row">
+                <div class="userPicBlock col-sm-3">
+                    <img class="userPicSmall" src="userPic/1.jpg"/>
+                    <span>R. McAdams</span>
+                    <button class="btn btn-danger">Delete</button>
+                </div>
+                <div class="commentInfo col-sm-10">
+                    <h5>It's all right</h5>
+                    <p>Rating: 4</p>
+                    <p class="commentContent">
+                        It is no da Vinci Code, but that may be good or bad, depending on who you are. This is a typical thriller/suspense page-turner action novel. The Biblical context that is wrapped around it is really just an excuse for the same kind of antics you'd get in any similar book. The author barely pays any attention to the significance of the Codex, or why it is so priceless. It is just a motivation for various sides, and something to fight over. Speaking of fighting, some of the attacks and planned attacks, and some of the violence in the book were a bit too extreme for me. I would say no young readers under 13 for this one.
+                    </p>
+                    <p>August 20, 2015</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="sndTitle">Add New Comment</p>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="inputTitle" class="col-sm-2 control-label">Comment Title:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputContent" class="col-sm-2 control-label">Comment Content:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="inputContent" rows="10" placeholder="Comments"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputScore" class="col-sm-2 control-label">Score:</label>
+                <div class="col-sm-2">
+                    <select class="form-control" id="inputScore">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <a href="#/book/1"><button type="submit" class="btn btn-block btn-primary">Submit</button></a>
+                </div>
+            </div>
         </form>
     </div>
-
-    <div class="sndTitle">Author</div>
-    <p class="authorIntro">
-        Alan Jacobson is the national bestselling author of several critically acclaimed novels. In order to take readers behind the scenes to places they might never go, Jacobson has embedded himself in many federal agencies, including spending several years working with two senior profilers at the Federal Bureau of Investigation’s vaunted Behavioral Analysis Unit in Quantico. During that time, Jacobson edited four published FBI research papers on serial offenders, attended numerous FBI training courses, worked with the head firearms instructor at the academy, and received ongoing personalized instruction on serial killers—which continues to this day. He has also worked with high-ranking members of the Drug Enforcement Administration, the US Marshals Service, the New York Police Department, SWAT teams, local bomb squads, branches of the US military, chief superintendents and detective sergeants at Scotland Yard, criminals, armorers, helicopter pilots, chief executive officers, historians, and Special Forces operators. These experiences have helped him to create gripping, realistic stories and characters. His series protagonist, FBI profiler Karen Vail, resonates with both female and male readers, and writers such as Nelson DeMille, James Patterson, and Michael Connelly have called Vail one of the most compelling heroes in suspense fiction.
-        Jacobson’s books have been published internationally, and several have been optioned for film and television. A number have been named to Best of the Year lists.
-        Jacobson has been interviewed extensively on television and radio, including on CNN, NPR, and multiple ABC, CBS, NBC, and Fox network affiliates.
-    </p>
-    <div class="sndTitle">Description</div>
-    <p class="content">
-        In a novel Jeffery Deaver has called “brilliant,” two ancient biblical documents reveal long-buried secrets that could change the world as we know it
-        In 930 CE, a revered group of scholars pen the first sanctioned Bible, planting the seed from which other major religions will grow. But in 1953, half the manuscript goes missing while being transported from Syria. Around the same time, in the foothills of the Dead Sea, an ancient scroll is discovered—and promptly stolen. Six decades later, both parchments stand at the heart of a geopolitical battle between foreign governments and radical extremists, threatening the lives of millions. With the American homeland under siege, the president turns to a team of uniquely trained covert operatives including FBI profiler Karen Vail, Special Forces veteran Hector DeSantos, and FBI terrorism expert Aaron Uziel. Their mission: Find the stolen documents and capture—or kill—those responsible for unleashing a coordinated and unprecedented attack on US soil.
-        Set in DC, New York, Paris, England, and Israel, The Lost Codex has been hailed by Douglas Preston as “a masterwork of international suspense” and “an outstanding novel."</p>
-</div>
-<div id="comment">
-    <p class="sndTitle">Comments</p>
-    <div class="commentList">
-        <div class="commentBriefly row">
-            <div class="userPicBlock col-sm-3">
-                <img class="userPicSmall" src="userPic/1.jpg"/>
-                <span>R. McAdams</span>
-                <button class="btn btn-danger">Delete</button>
-            </div>
-            <div class="commentInfo col-sm-10">
-                <h5>It's all right</h5>
-                <p>Rating: 4</p>
-                <p class="commentContent">
-                    It is no da Vinci Code, but that may be good or bad, depending on who you are. This is a typical thriller/suspense page-turner action novel. The Biblical context that is wrapped around it is really just an excuse for the same kind of antics you'd get in any similar book. The author barely pays any attention to the significance of the Codex, or why it is so priceless. It is just a motivation for various sides, and something to fight over. Speaking of fighting, some of the attacks and planned attacks, and some of the violence in the book were a bit too extreme for me. I would say no young readers under 13 for this one.
-                </p>
-                <p>August 20, 2015</p>
-            </div>
-        </div>
-    </div>
-
-    <p class="sndTitle">Add New Comment</p>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="inputTitle" class="col-sm-2 control-label">Comment Title:</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputTitle" placeholder="Title">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputContent" class="col-sm-2 control-label">Comment Content:</label>
-            <div class="col-sm-8">
-                <textarea class="form-control" id="inputContent" rows="10" placeholder="Comments"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputScore" class="col-sm-2 control-label">Score:</label>
-            <div class="col-sm-2">
-                <select class="form-control" id="inputScore">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-5">
-                <a href="#/book/1"><button type="submit" class="btn btn-block btn-primary">Submit</button></a>
-            </div>
-        </div>
-    </form>
 </div>
