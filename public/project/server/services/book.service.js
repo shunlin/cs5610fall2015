@@ -7,8 +7,8 @@ module.exports = function(app, model) {
     app.put("/api/project/book/:bookId", updateBook);
     app.delete("/api/project/book/:bookId", deleteBook);
     app.get("/api/project/bookSearch/:bookTitle", findBooksByTitle);
-    app.get("/api/project/book/topTenSeller", getTopTenSellers);
-    app.get("/api/project/book/tenLatest", getTenLatestBooks);
+    app.get("/api/project/topTenSellerBooks/", getTopTenSellers);
+    app.get("/api/project/tenLatestBooks/", getTenLatestBooks);
 
     function createBook(req, res) {
         var newBook = req.body;

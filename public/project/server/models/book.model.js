@@ -64,11 +64,13 @@ module.exports = function(app, mongoose) {
         BookModel.findByIdAndUpdate(
             bookId,
             {
-                author: bookInfo.author,
-                description: bookInfo.description,
-                authorIntro: bookInfo.authorIntro,
-                price: bookInfo.price,
-                quantity: bookInfo.quantity,
+                $set: {
+                    author: bookInfo.author,
+                    description: bookInfo.description,
+                    authorIntro: bookInfo.authorIntro,
+                    price: bookInfo.price,
+                    quantity: bookInfo.quantity
+                }
             },
             function(err, book) {
                 if (err) deferred.reject(err);
@@ -115,7 +117,7 @@ module.exports = function(app, mongoose) {
         BookModel.find(function(err, books) {
             if (err) deferred.reject(err);
             else deferred.resolve(books);
-        }).sort({'date': -1}).limit(10);
+        }).sort({'addDate': -1}).limit(10);
 
         return deferred.promise;
     }

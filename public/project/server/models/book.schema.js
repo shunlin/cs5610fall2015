@@ -8,7 +8,7 @@ module.exports = function(app, mongoose) {
         authorIntro: String,
         price: Number,
         quantity: Number,
-        sold: Number,
+        sold: {type: Number, default: 0},
         addDate: {type: Date, default: Date.now}
     }, {
         collection: "cs5610.project.book"

@@ -1,111 +1,35 @@
-<h2 class="sndTitle">New Books</h2>
-<div class="bookList">
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book?id=1">
-                <img class="img-responsive" src="bookPic/1.jpg"/>
-            </a>
+<div ng-controller="HomeController">
+    <h2 class="sndTitle">New Books</h2>
+    <div class="bookList">
+        <div class="bookBriefly" ng-repeat="book in model.tenLatestBooks">
+            <div class="bookPicBlock">
+                <a href="#/book?bookId={{book._id}}">
+                    <img class="img-responsive" src="{{book.image}}"/>
+                </a>
+            </div>
+            <p class="textLabel">
+                Book: <a href="#/book?bookId={{book._id}}">{{book.title}}</a>
+            </p>
+            <p class="textLabel">Author: {{book.author}}</p>
+            <p class="textLabel">Price: {{book.price}}</p>
+            <p class="textLabel">Sold: {{book.sold}}</p>
         </div>
-        <p class="textLabel">
-            Book: <a href="#/book/1">The Lost Codex (OPSIG Team Black)</a>
-        </p>
-        <p class="textLabel">Author: Alan Jacobson</p>
-        <p class="textLabel">Price: 14.21</p>
-        <p class="textLabel">Sold: 12</p>
     </div>
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/2">
-                <img class="img-responsive" src="bookPic/2.jpg"/>
-            </a>
-        </div>
-        <p class="textLabel">
-            Book: <a href="#/book/2">Diary of a Wimpy Kid: Old School</a>
-        </p>
-        <p class="textLabel">Author: Jeff Kinney</p>
-        <p class="textLabel">Price: 7.92</p>
-        <p class="textLabel">Sold: 10</p>
-    </div>
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/3">
-                <img class="img-responsive" src="bookPic/3.jpg" alt="bookTitle3" />
-            </a>
-        </div>
-        <p class="textLabel">
-            Book: <a href="#/book/3">First 100 Words</a>
-        </p>
-        <p class="textLabel">Author: Roger Priddy</p>
-        <p class="textLabel">Price: 3.30</p>
-        <p class="textLabel">Sold: 1</p>
-    </div>
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/4">
-                <img class="img-responsive" src="bookPic/4.jpg" alt="bookTitle4" />
-            </a>
-        </div>
-        <p class="textLabel">
-            Book: <a href="#/book/4">Troublemaker: Surviving Hollywood and Scientology</a>
-        </p>
-        <p class="textLabel">Author: Leah Remini</p>
-        <p class="textLabel">Price: 15.99</p>
-        <p class="textLabel">Sold: 0</p>
-    </div>
-</div>
 
-<h2 class="sndTitle">Best Sellers</h2>
-<div class="bookList">
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/1">
-                <img class="img-responsive" src="bookPic/1.jpg"/>
-            </a>
+    <h2 class="sndTitle">Best Sellers</h2>
+    <div class="bookList">
+        <div class="bookBriefly" ng-repeat="book in model.topTenSellers">
+            <div class="bookPicBlock">
+                <a href="#/book?bookId={{book._id}}">
+                    <img class="img-responsive" src="{{book.image}}"/>
+                </a>
+            </div>
+            <p class="textLabel">
+                Book: <a href="#/book?bookId={{book._id}}">{{book.title}}</a>
+            </p>
+            <p class="textLabel">Author: {{book.author}}</p>
+            <p class="textLabel">Price: {{book.price}}</p>
+            <p class="textLabel">Sold: {{book.sold}}</p>
         </div>
-        <p class="textLabel">
-            Book: <a href="#/book/1">The Lost Codex (OPSIG Team Black)</a>
-        </p>
-        <p class="textLabel">Author: Alan Jacobson</p>
-        <p class="textLabel">Price: 14.21</p>
-        <p class="textLabel">Sold: 12</p>
-    </div>
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/2">
-                <img class="img-responsive" src="bookPic/2.jpg"/>
-            </a>
-        </div>
-        <p class="textLabel">
-            Book: <a href="#/book/2">Diary of a Wimpy Kid: Old School</a>
-        </p>
-        <p class="textLabel">Author: Jeff Kinney</p>
-        <p class="textLabel">Price: 7.92</p>
-        <p class="textLabel">Sold: 10</p>
-    </div>
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/3">
-                <img class="img-responsive" src="bookPic/3.jpg" alt="bookTitle3" />
-            </a>
-        </div>
-        <p class="textLabel">
-            Book: <a href="#/book/3">First 100 Words</a>
-        </p>
-        <p class="textLabel">Author: Roger Priddy</p>
-        <p class="textLabel">Price: 3.30</p>
-        <p class="textLabel">Sold: 1</p>
-    </div>
-    <div class="bookBriefly">
-        <div class="bookPicBlock">
-            <a href="#/book/4">
-                <img class="img-responsive" src="bookPic/4.jpg" alt="bookTitle4" />
-            </a>
-        </div>
-        <p class="textLabel">
-            Book: <a href="#/book/4">Troublemaker: Surviving Hollywood and Scientology</a>
-        </p>
-        <p class="textLabel">Author: Leah Remini</p>
-        <p class="textLabel">Price: 15.99</p>
-        <p class="textLabel">Sold: 0</p>
     </div>
 </div>
