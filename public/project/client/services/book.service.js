@@ -8,7 +8,9 @@
     function BookService($http, $q) {
         var api = {
             getBookInfoById: getBookInfoById,
-            addBook: addBook
+            addBook: addBook,
+            deleteBook: deleteBook
+
         };
         return api;
 
@@ -40,6 +42,14 @@
         function addBook(newBook) {
             var deferred = $q.defer();
             $http.post("/api/project/book/", newBook).success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
+        function deleteBook(bookId) {
+            var deferred = $q.defer();
+            $http.delete("/api/project/book/" + bookId).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
