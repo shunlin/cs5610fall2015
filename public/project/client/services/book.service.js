@@ -9,7 +9,8 @@
         var api = {
             getBookInfoById: getBookInfoById,
             addBook: addBook,
-            deleteBook: deleteBook
+            deleteBook: deleteBook,
+            updateBook: updateBook
 
         };
         return api;
@@ -50,6 +51,14 @@
         function deleteBook(bookId) {
             var deferred = $q.defer();
             $http.delete("/api/project/book/" + bookId).success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
+        function updateBook(bookId, bookInfo) {
+            var deferred = $q.defer();
+            $http.put("/api/project/book/" + bookId, bookInfo).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;

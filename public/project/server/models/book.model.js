@@ -64,6 +64,7 @@ module.exports = function(app, mongoose) {
         BookModel.findByIdAndUpdate(
             bookId,
             {
+                author: bookInfo.author,
                 description: bookInfo.description,
                 authorIntro: bookInfo.authorIntro,
                 price: bookInfo.price,
