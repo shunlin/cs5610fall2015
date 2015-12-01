@@ -3,12 +3,12 @@
     <div class="bookList">
         <div class="bookBriefly" ng-repeat="book in model.tenLatestBooks">
             <div class="bookPicBlock">
-                <a href="#/book?bookId={{book._id}}">
+                <a href="#/book/{{book._id}}">
                     <img class="img-responsive" src="{{book.image}}"/>
                 </a>
             </div>
             <p class="textLabel">
-                Book: <a href="#/book?bookId={{book._id}}">{{book.title}}</a>
+                Book: <a href="#/book/{{book._id}}">{{book.title}}</a>
             </p>
             <p class="textLabel">Author: {{book.author}}</p>
             <p class="textLabel">Price: {{book.price}}</p>
@@ -20,12 +20,12 @@
     <div class="bookList">
         <div class="bookBriefly" ng-repeat="book in model.topTenSellers">
             <div class="bookPicBlock">
-                <a href="#/book?bookId={{book._id}}">
+                <a href="#/book/{{book._id}}">
                     <img class="img-responsive" src="{{book.image}}"/>
                 </a>
             </div>
             <p class="textLabel">
-                Book: <a href="#/book?bookId={{book._id}}">{{book.title}}</a>
+                Book: <a href="#/book/{{book._id}}">{{book.title}}</a>
             </p>
             <p class="textLabel">Author: {{book.author}}</p>
             <p class="textLabel">Price: {{book.price}}</p>
