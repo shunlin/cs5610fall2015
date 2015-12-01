@@ -30,8 +30,10 @@
                 controller: "BookController",
                 controllerAs: "model"
             })
-            .when("/bookEdit/:id", {
-                templateUrl: "views/bookEdit/bookEdit.view.html"
+            .when("/bookEdit/:bookId", {
+                templateUrl: "views/bookEdit/bookEdit.view.html",
+                controller: "BookEditController",
+                controllerAs: "model"
             })
             .when("/cart", {
                 templateUrl: "views/cart/cart.view.html"

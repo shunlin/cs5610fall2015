@@ -1,74 +1,65 @@
 <h1 class="page-header">Edit Book</h1>
-<form class="form-horizontal" action="#/book/1">
+<form class="form-horizontal" ng-controller="BookEditController">
     <div class="form-group">
         <label for="inputTitle" class="col-sm-2 control-label">Title:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputTitle" value="Becoming Nicole: The Transformation of an American Family">
+            <p class="form-control" id="inputTitle">{{model.bookInfo.title}} (From External API, Cannot Be Modified)</p>
         </div>
     </div>
     <div class="form-group">
         <label for="inputAuthor" class="col-sm-2 control-label">Author:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAuthor" value="Amy Ellis Nutt">
+            <input type="text" class="form-control" id="inputAuthor" ng-model="model.bookInfo.author">
         </div>
     </div>
     <div class="form-group">
         <label for="inputPublisher" class="col-sm-2 control-label">Publisher:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPublisher" value="Random House">
+            <p class="form-control" id="inputPublisher">{{model.bookInfo.publisher}}  (From External API, Cannot Be Modified)</p>
         </div>
     </div>
     <div class="form-group">
         <label for="inputPublishedDate" class="col-sm-2 control-label">Published Date:</label>
         <div class="col-sm-10">
-            <input type="date" class="form-control" id="inputPublishedDate" value="2015-10-04">
+            <p class="form-control" id="inputPublishedDate">{{model.bookInfo.date}}  (From External API, Cannot Be Modified)</p>
         </div>
     </div>
     <div class="form-group">
         <label for="inputPages" class="col-sm-2 control-label">Pages:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPages" value="304">
+            <p class="form-control" id="inputPages">{{model.bookInfo.page}} (From External API, Cannot Be Modified)</p>
         </div>
     </div>
     <div class="form-group">
         <label for="inputPrice" class="col-sm-2 control-label">Price($):</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputPrice" value="16.20">
+            <input type="text" class="form-control" id="inputPrice" ng-model="model.bookInfo.price">
         </div>
     </div>
     <div class="form-group">
         <label for="inputAvailable" class="col-sm-2 control-label">Available:</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAvailable" value="205">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputImage" class="col-sm-2 control-label">Image:</label>
-        <div class="col-sm-5">
-            <input type="file" class="form-control" id="inputImage">
+            <input type="text" class="form-control" id="inputAvailable" ng-model="model.bookInfo.quantity">
         </div>
     </div>
 
     <div class="form-group">
         <label for="inputAuthorInfo" class="col-sm-2 control-label">Author Info:</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="6" id="inputAuthorInfo">Amy Ellis Nutt has been a staff writer at The Star-Ledger for 13 years.
-She is a graduate of Smith College and has Masters degrees from M.I.T.(Philosophy) and the Columbia University Graduate School of Journalism, where she is a part-time adjunct instructor, In 2004-2005 she was a Nieman Fellow at Harvard University. Her 2008 series "The Accidental Artist" won a Sigma Delta Chi award from the Society of Professional Journalists and was a finalist for a Pulitzer Prize in Feature Writing,
+            <textarea class="form-control" rows="6" id="inputAuthorInfo" ng-model="model.bookInfo.authorIntro">
             </textarea>
         </div>
     </div>
     <div class="form-group">
         <label for="inputBookDesc" class="col-sm-2 control-label">Book Description:</label>
         <div class="col-sm-10">
-            <textarea class="form-control" rows="10" id="inputBookDesc">The inspiring true story of a transgender girl, her identical twin brother, and an ordinary American family’s extraordinary journey to understand, nurture, and celebrate the uniqueness in us all, from the Pulitzer Prize–winning science reporter for The Washington Post
-
-When Wayne and Kelly Maines adopted identical twin boys, they thought their lives were complete. But it wasn’t long before they noticed a marked difference between Jonas and his brother, Wyatt. Jonas preferred sports and trucks and many of the things little boys were “supposed” to like; but Wyatt liked princess dolls and dress-up and playing Little Mermaid. By the time the twins were toddlers, confusion over Wyatt’s insistence that he was female began to tear the family apart. In the years that followed, the Maineses came to question their long-held views on gender and identity, to accept and embrace Wyatt’s transition to Nicole, and to undergo an emotionally wrenching transformation of their own that would change all their lives forever.
+            <textarea class="form-control" rows="10" id="inputBookDesc" ng-model="model.bookInfo.description">
             </textarea>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-block btn-primary">Update</button>
+            <button class="btn btn-block btn-primary" ng-click="model.editBook()">Update</button>
         </div>
     </div>
 </form>

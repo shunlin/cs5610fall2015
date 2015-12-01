@@ -30,9 +30,9 @@
                             bookInfo.title = apiInfo.title;
                             bookInfo.image = "https://covers.openlibrary.org/b/id/" + apiInfo.covers[0].toString() + "-M.jpg";
                             bookInfo.date = apiInfo.created.value.substring(0, 10);
-                            bookInfo.author = apiInfo.authors[0].name;
                             bookInfo.publisher = apiInfo.publishers[0];
                             bookInfo.page = apiInfo.number_of_pages;
+                            bookInfo.author = bookInfo.author.join(", ");
                             deferred.resolve(bookInfo);
                         }
                 });

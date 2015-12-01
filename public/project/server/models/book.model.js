@@ -69,11 +69,10 @@ module.exports = function(app, mongoose) {
                 authorIntro: bookInfo.authorIntro,
                 price: bookInfo.price,
                 quantity: bookInfo.quantity,
-                sold: bookInfo.sold
             },
-            function(err, user) {
+            function(err, book) {
                 if (err) deferred.reject(err);
-                else deferred.resolve(user);
+                else deferred.resolve(book);
             }
         );
         return deferred.promise;

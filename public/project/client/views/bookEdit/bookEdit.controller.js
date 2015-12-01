@@ -7,18 +7,24 @@
 
     function BookEditController($location, $routeParams, BookService) {
         var model = this;
-        model.bookInfo = {};
-        var bookInfo = model.bookInfo;
+        var bookId = $routeParams.bookId;
+
         model.editBook = editBook;
         model.$location = $location;
 
+        BookService.getBookInfoById(bookId).then(function(book) {
+            model.bookInfo = book;
+        });
+
         function editBook() {
-            var authors = bookInfo.authorString.split(', ');
-            bookInfo.author = [];
+            console.log(model.bookInfo.author);
+            var authors = model.bookInfo.author.split(', ');
+            model.bookInfo.author = [];
             for (var i = 0; i < authors.length; i++) {
-                bookInfo.author.push(authors[i]);
+                model.bookInfo.author.push(authors[i]);
             }
-            BookService.addBook(bookInfo).then(
+            console.log(model.bookInfo.author);
+            BookService.updateBook(bookId, model.bookInfo).then(
                 function(book) {
                     $location.url('/book/' + book._id);
                 });
