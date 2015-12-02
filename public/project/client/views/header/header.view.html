@@ -19,9 +19,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">Admin
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#/allOrders">All Orders</a></li>
-                        <li><a href="#/addBook">Add New Book</a></li>
-                        <li><a href="#/statistics">Selling Statistics</a></li>
+                        <li><a href="#/allOrders" ng-class="{'active' : $location.url() == '/allOrders'}">All Orders</a></li>
+                        <li><a href="#/addBook" ng-class="{'active' : $location.url() == '/addBook'}">Add New Book</a></li>
+                        <li><a href="#/statistics" ng-class="{'active' : $location.url() == '/statistics'}">Selling Statistics</a></li>
                     </ul>
                 </li>
                 <li><a href="#/orders" ng-class="{'active' : $location.url() == '/orders'}">Orders</a></li>

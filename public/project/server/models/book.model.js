@@ -88,9 +88,7 @@ module.exports = function(app, mongoose) {
         var deferred = q.defer();
         BookModel.findByIdAndRemove(bookId, function(err, res) {
             if (err) deferred.reject(err);
-            else BookModel.find(function(err, users) {
-                deferred.resolve(users);
-            })
+            else deferred.resolve(res);
         });
 
         return deferred.promise;
