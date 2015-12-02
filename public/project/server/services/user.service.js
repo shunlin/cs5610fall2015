@@ -15,8 +15,7 @@ module.exports = function(app, model, auth, passport) {
     }
 
     function loggedin(req, res) {
-        //console.log(req.isAuthenticated());
-        res.send(req.isAuthenticated() ? req.user : null);
+        res.json(req.isAuthenticated() ? req.user : null);
     }
 
     function logout(req, res) {
