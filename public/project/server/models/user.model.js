@@ -2,7 +2,8 @@
 
 var q = require("q");
 
-module.exports = function(app, mongoose, UserModel) {
+module.exports = function(app) {
+    var UserModel = require("./user.schema.js");
     var api = {
         create: createUser,
         findAll: findAllUsers,

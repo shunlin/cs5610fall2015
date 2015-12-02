@@ -13,8 +13,9 @@
             updateBook: updateBook,
             getTenLatestBooks: getTenLatestBooks,
             getTopTenSellers: getTopTenSellers,
-            getBooksByTitle: getBooksByTitle
-
+            getBooksByTitle: getBooksByTitle,
+            addCommentForBook: addCommentForBook,
+            deleteCommentForBook: deleteCommentForBook
         };
         return api;
 
@@ -23,15 +24,7 @@
             var bookInfo;
             $http.get("/api/project/book/" + bookId).success(function(response) {
                 bookInfo = response;
-                $.ajax({
-                    url: "http://openlibrary.org/api/books?jscmd=details&format=jsonp&bibkeys=ISBN:" + bookInfo.isbn,
-                    dataType: "jsonp",
-                    success:
-                        function (response) {
-                            bookInfo = combineApiInfo(bookInfo, response);
-                            deferred.resolve(bookInfo);
-                        }
-                });
+                getBookInfoForBook(bookInfo, deferred);
             });
             return deferred.promise;
         }
@@ -99,6 +92,18 @@
             });
         }
 
+        function getBookInfoForBook(bookInfo, deferred) {
+            $.ajax({
+                url: "http://openlibrary.org/api/books?jscmd=details&format=jsonp&bibkeys=ISBN:" + bookInfo.isbn,
+                dataType: "jsonp",
+                success:
+                    function (response) {
+                        bookInfo = combineApiInfo(bookInfo, response);
+                        deferred.resolve(bookInfo);
+                    }
+            });
+        }
+
         function composeURL(bookList) {
             var url = "http://openlibrary.org/api/books?jscmd=details&format=jsonp&bibkeys=";
             for (var i = 0; i < bookList.length; i++) {
@@ -118,6 +123,22 @@
             bookInfo.page = apiInfo.number_of_pages;
             bookInfo.author = bookInfo.author.join(", ");
             return bookInfo;
+        }
+
+        function addCommentForBook(bookId, comment) {
+            var deferred = $q.defer();
+            $http.post("/api/project/book/" + bookId + "/comment/", comment).success(function(bookInfo) {
+                getBookInfoForBook(bookInfo, deferred);
+            });
+            return deferred.promise;
+        }
+
+        function deleteCommentForBook(bookId, commentId) {
+            var deferred = $q.defer();
+            $http.delete("/api/project/book/" + bookId + "/comment/" + commentId).success(function(bookInfo) {
+                getBookInfoForBook(bookInfo, deferred);
+            });
+            return deferred.promise;
         }
     }
 

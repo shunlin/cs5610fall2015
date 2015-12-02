@@ -41,55 +41,63 @@
     </div>
     <div id="comment">
         <p class="sndTitle">Comments</p>
-        <div class="commentList">
-            <div class="commentBriefly row">
-                <div class="userPicBlock col-sm-3">
-                    <img class="userPicSmall" src="userPic/1.jpg"/>
-                    <span>R. McAdams</span>
-                    <button class="btn btn-danger">Delete</button>
-                </div>
-                <div class="commentInfo col-sm-10">
-                    <h5>It's all right</h5>
-                    <p>Rating: 4</p>
-                    <p class="commentContent">
-                        It is no da Vinci Code, but that may be good or bad, depending on who you are. This is a typical thriller/suspense page-turner action novel. The Biblical context that is wrapped around it is really just an excuse for the same kind of antics you'd get in any similar book. The author barely pays any attention to the significance of the Codex, or why it is so priceless. It is just a motivation for various sides, and something to fight over. Speaking of fighting, some of the attacks and planned attacks, and some of the violence in the book were a bit too extreme for me. I would say no young readers under 13 for this one.
-                    </p>
-                    <p>August 20, 2015</p>
+        <div ng-show="model.bookInfo.comments.length!=0">
+            <div class="commentList">
+                <div class="commentBriefly row" ng-repeat="comment in model.bookInfo.comments">
+                    <div class="userPicBlock col-sm-3">
+                        <img class="userPicSmall" src="{{comment.user.imageURL}}"/>
+                        {{comment.user.username}}
+                        <button class="btn btn-danger" ng-click="model.removeComment(comment)" ng-show="currentUser!=null&&currentUser.group.indexOf('admin')!=-1">Delete</button>
+                    </div>
+                    <div class="commentInfo col-sm-10">
+                        <h5>{{comment.title}} <span class="smallerText">Rating: {{comment.grade}}</span></h5>
+                        <p>{{comment.content}}</p>
+                        <p class="smallerText">{{model.formatTime(comment.time)}}</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div ng-show="model.bookInfo.comments.length==0">
+            <p>No comments now.</p>
+        </div>
 
         <p class="sndTitle">Add New Comment</p>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="inputTitle" class="col-sm-2 control-label">Comment Title:</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+        <div ng-show="currentUser!=null">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputTitle" class="col-sm-2 control-label">Comment Title:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="inputTitle" placeholder="Title" ng-model="model.newComment.title">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputContent" class="col-sm-2 control-label">Comment Content:</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="inputContent" rows="10" placeholder="Comments"></textarea>
+                <div class="form-group">
+                    <label for="inputContent" class="col-sm-2 control-label">Comment Content:</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="inputContent" rows="10" placeholder="Comments" ng-model="model.newComment.content"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="inputScore" class="col-sm-2 control-label">Score:</label>
-                <div class="col-sm-2">
-                    <select class="form-control" id="inputScore">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                <div class="form-group">
+                    <label for="inputScore" class="col-sm-2 control-label">Score:</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="inputScore" ng-model="model.newComment.grade">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-5">
-                    <a href="#/book/1"><button type="submit" class="btn btn-block btn-primary">Submit</button></a>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button type="submit" class="btn btn-block btn-primary" ng-click="model.addComment()">Submit</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <div ng-show="currentUser==null">
+            <p>You can add comments after <a href="#/login">Login</a> </p>
+        </div>
+        </div>
     </div>
 </div>

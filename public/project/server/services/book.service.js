@@ -2,7 +2,7 @@
 
 module.exports = function(app, model, auth) {
     app.post("/api/project/book/", createBook);
-    app.post("/api/project/book/", findAllBooks);
+    app.get("/api/project/allBooks/", findAllBooks);
     app.get("/api/project/book/:bookId", findBookById);
     app.put("/api/project/book/:bookId", updateBook);
     app.delete("/api/project/book/:bookId", deleteBook);

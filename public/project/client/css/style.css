@@ -105,6 +105,15 @@ span,p.time {
     float: left;
 }
 
+.commentInfo p {
+    font-size: 18px;
+}
+
+.commentInfo .smallerText {
+    font-size: 14px;
+    color: #646256;
+}
+
 .commentBriefly {
     border-bottom: 1px dotted rgb(102, 102, 102);
     margin-bottom: 10px;

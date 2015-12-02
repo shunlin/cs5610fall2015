@@ -2,9 +2,9 @@
 
 var q = require("q");
 
-module.exports = function(app, mongoose) {
-    var BookSchema = require("./book.schema.js")(app, mongoose);
-    var BookModel = mongoose.model("BookModel", BookSchema);
+module.exports = function(app) {
+    var BookModel = require("./book.schema.js");
+    var CommentModel = require("./comment.schema.js").model;
 
     var api = {
         create: createBook,
@@ -15,7 +15,12 @@ module.exports = function(app, mongoose) {
         delete: deleteBook,
         findBooksByKeyword: findBooksByKeyword,
         getTopTenSellers: getTopTenSellers,
-        getTenLatestBooks: getTenLatestBooks
+        getTenLatestBooks: getTenLatestBooks,
+        createCommentForBook: createCommentForBook,
+        findAllCommentsForBook: findAllCommentsForBook,
+        findCommentForBook: findCommentForBook,
+        updateCommentForBook: updateCommentForBook,
+        deleteCommentForBook: deleteCommentForBook
     };
     return api;
 
@@ -44,6 +49,9 @@ module.exports = function(app, mongoose) {
         BookModel.findById(bookId, function(err, book) {
             if (err) deferred.reject(err);
             else deferred.resolve(book);
+        }).populate({
+            path: 'comments',
+            populate: { path: 'user'}
         });
 
         return deferred.promise;
@@ -126,6 +134,97 @@ module.exports = function(app, mongoose) {
             if (err) deferred.reject(err);
             else deferred.resolve(books);
         }).sort({'addDate': -1}).limit(10);
+
+        return deferred.promise;
+    }
+
+    function createCommentForBook(bookId, comment) {
+        var deferred = q.defer();
+        BookModel.findById(bookId, function(err, book) {
+            if (err) deferred.reject(err);
+            else {
+                var newComment = new CommentModel({
+                    user: comment.user,
+                    title: comment.title,
+                    content: comment.content,
+                    grade: comment.grade
+                });
+                book.comments.push(newComment);
+                book.save(function(err, savedBook) {
+                    if (err) deferred.reject(err);
+                    else deferred.resolve(savedBook);
+                })
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    function findAllCommentsForBook(bookId) {
+        var deferred = q.defer();
+        BookModel.findById(bookId, function(err, book) {
+            if (err) deferred.reject(err);
+            else deferred.resolve(book.comments);
+        });
+        return deferred.promise;
+    }
+
+    function findCommentForBook(bookId, commentId) {
+        var deferred = q.defer();
+        BookModel.findById(bookId, function(err, book) {
+            if (err) deferred.reject(err);
+            else {
+                for (var i = 0; i < book.comments.length; i++) {
+                    if (book.comments[i]._id == commentId) {
+                        deferred.resolve(book.comments[i]);
+                        break;
+                    }
+                }
+            }
+        });
+        return deferred.promise;
+    }
+
+    function updateCommentForBook(bookId, commentId, comment) {
+        var deferred = q.defer();
+        BookModel.findById(bookId, function(err, book) {
+            if (err) deferred.reject(err);
+            else {
+                for (var i = 0; i < book.comments.length; i++) {
+                    if (book.comments[i]._id == commentId) {
+                        book.comments[i].title = comment.title;
+                        book.comments[i].content = comment.content;
+                        book.comments[i].grade = comment.grade;
+                        book.save(function(err, savedBook) {
+                            if (err) deferred.reject(err);
+                            else deferred.resolve(savedBook);
+                        });
+                        break;
+                    }
+                }
+            }
+        });
+
+        return deferred.promise;
+    }
+
+    function deleteCommentForBook(bookId, commentId) {
+        var deferred = q.defer();
+        BookModel.findById(bookId, function(err, book) {
+            if (err) deferred.reject(err);
+            else {
+                for (var i = 0; i < book.comments.length; i++) {
+                    if (book.comments[i]._id == commentId) {
+                        book.comments.splice(i, 1);
+                        book.save(function(err, savedBook) {
+                            if (err) deferred.reject(err);
+                            else deferred.resolve(savedBook);
+                        });
+                        break;
+                    }
+                }
+            }
+        });
 
         return deferred.promise;
     }
