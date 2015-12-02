@@ -20,7 +20,7 @@
             user.password = model.password;
 
             UserService.login(user).then(function(user) {
-                if (user === null) alert("Wrong password!");
+                if (user === null) alert("Wrong username or password!");
                 else {
                     $rootScope.currentUser = user;
                     $location.url('/profile');

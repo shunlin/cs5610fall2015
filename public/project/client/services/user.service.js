@@ -25,6 +25,8 @@
             var deferred = $q.defer();
             $http.post("/api/project/login", user).success(function(response) {
                 deferred.resolve(response);
+            }).error(function(response) {
+                deferred.resolve(null);
             });
             return deferred.promise;
         }
