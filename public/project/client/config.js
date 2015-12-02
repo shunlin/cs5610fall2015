@@ -14,9 +14,13 @@
             })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
+                controller: "LoginController",
+                controllerAs: "model"
             })
             .when("/register", {
                 templateUrl: "views/register/register.view.html",
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html",
@@ -58,7 +62,8 @@
             })
             .when("/statistics", {
                 templateUrl: "views/statistics/statistics.view.html",
-                controller: "StatisticsController"
+                controller: "StatisticsController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "/home"

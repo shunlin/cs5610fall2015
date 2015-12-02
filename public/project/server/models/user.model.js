@@ -2,15 +2,13 @@
 
 var q = require("q");
 
-module.exports = function(app, mongoose) {
-    var UserSchema = require("./user.schema.js")(app, mongoose);
-    var UserModel = mongoose.model("UserModel", UserSchema);
-
+module.exports = function(app, mongoose, UserModel) {
     var api = {
         create: createUser,
         findAll: findAllUsers,
         findById: findById,
-        findByUsername: findByUsername,
+        findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+        findUserByUsername: findUserByUsername,
         update: updateUser,
         delete: deleteUser
     };
@@ -18,9 +16,15 @@ module.exports = function(app, mongoose) {
 
     function createUser(user) {
         var deferred = q.defer();
-        UserModel.create(user, function(err, user) {
-            if (err) deferred.reject(err);
-            else deferred.resolve(user);
+        UserModel.findOne({username: user.username}, function(err, existingUser) {
+            if (existingUser == null) {
+                UserModel.create(user, function(err, user) {
+                    if (err) deferred.reject(err);
+                    else deferred.resolve(user);
+                });
+            } else {
+                deferred.resolve(null);
+            }
         });
 
         return deferred.promise;
@@ -46,9 +50,19 @@ module.exports = function(app, mongoose) {
         return deferred.promise;
     }
 
-    function findByUsername(username) {
+    function findUserByUsername(username) {
         var deferred = q.defer();
         UserModel.findOne({username: username}, function(err, user) {
+            if (err) deferred.reject(err);
+            else deferred.resolve(user);
+        });
+
+        return deferred.promise;
+    }
+
+    function findUserByUsernameAndPassword(username, password) {
+        var deferred = q.defer();
+        UserModel.findOne({username: username, password: password}, function(err, user) {
             if (err) deferred.reject(err);
             else deferred.resolve(user);
         });
@@ -63,11 +77,11 @@ module.exports = function(app, mongoose) {
             {
                 $set: {
                     password: userInfo.password,
-                    firstName: userInfo.firstName,
-                    lastName: userInfo.lastName,
+                    fullName: userInfo.fullName,
                     address: userInfo.address,
                     telephone: userInfo.telephone,
-                    email: userInfo.email
+                    email: userInfo.email,
+                    imageURL: userInfo.imageURL
                 }
             },
             {

@@ -4,11 +4,11 @@ module.exports = function(app, mongoose) {
     var UserSchema = mongoose.Schema({
         username: String,
         password: String,
-        firstName: String,
-        lastName: String,
+        fullName: String,
         address: String,
         telephone: String,
         email: String,
+        imageURL: String,
         group: [String],
         likeBooks: [String]
     }, {

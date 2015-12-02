@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(app, model) {
+module.exports = function(app, model, auth) {
     app.post("/api/project/book/", createBook);
     app.post("/api/project/book/", findAllBooks);
     app.get("/api/project/book/:bookId", findBookById);

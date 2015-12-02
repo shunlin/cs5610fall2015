@@ -5,23 +5,25 @@
         .module("MyBook")
         .controller("RegisterController", RegisterController);
 
-    function AddBookController($location, UserService) {
+    function RegisterController($location, UserService) {
         var model = this;
-        model.newBook = {};
-        var newBook = model.newBook;
-        model.addBook = addBook;
         model.$location = $location;
+        model.register = register;
+        model.newUser = {};
 
-        function addBook() {
-            var authors = newBook.authorString.split(', ');
-            newBook.author = [];
-            for (var i = 0; i < authors.length; i++) {
-                newBook.author.push(authors[i]);
+        function register() {
+            if (model.newUser.password != model.newUser.password2) alert("Password not match!");
+            else {
+                UserService.createUser(model.newUser).then(
+                    function(user) {
+                        if (user != null) {
+                            $location.url('/profile');
+                        } else {
+                            alert("User already exists!");
+                        }
+                    }
+                );
             }
-            BookService.addBook(newBook).then(
-                function(book) {
-                    $location.url('/book/' + book._id);
-                });
         }
 
     }

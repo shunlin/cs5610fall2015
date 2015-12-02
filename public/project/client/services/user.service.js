@@ -7,18 +7,46 @@
 
     function UserService($http, $q) {
         var api = {
+            login: login,
+            loggedin: loggedin,
+            logout: logout,
             createUser: createUser,
             findAllUsers: findAllUsers,
             findUserById: findUserById,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            findUserByUsernameAndPassword: findUserByUsernameAndPassword
         };
         return api;
 
+        function login(user) {
+            var deferred = $q.defer();
+            $http.post("/api/project/login", user).success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
+        function loggedin() {
+            var deferred = $q.defer();
+            $http.get("/api/project/loggedin").success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
+        function logout() {
+            var deferred = $q.defer();
+            $http.get("/api/project/logout").success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
         function createUser(newUser) {
             var deferred = $q.defer();
-            $http.post("/api/project/user/", newUser).success(function(response) {
+            $http.post("/api/project/register", newUser).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
@@ -61,6 +89,15 @@
             $http.get("/api/project/userSearch/" + username).success(function(user) {
                 deferred.resolve(user);
             });
+            return deferred.promise;
+        }
+
+        function findUserByUsernameAndPassword(username, password) {
+            var deferred = $q.defer();
+            $http.get("/api/project/user?username=" + username + "&password=" + password)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
             return deferred.promise;
         }
     }
