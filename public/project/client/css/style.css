@@ -54,7 +54,7 @@ p.textLabel {
     width: 97px;
     float: left;
     margin-right: 10px;
-    min-height: 151px;
+    padding-bottom: 10px;
 }
 
 .bookPicLarge {
@@ -99,11 +99,6 @@ span,p.time {
     width: 48px;
     height: 48px;
     border: 1px solid #999999;
-}
-
-.commentContent{
-    line-height: 25px;
-    font-size: 14px;
 }
 
 .commentInfo {

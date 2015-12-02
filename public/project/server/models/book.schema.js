@@ -3,6 +3,7 @@
 module.exports = function(app, mongoose) {
     var BookSchema = mongoose.Schema({
         isbn: String,
+        title: String,
         author: [String],
         description: String,
         authorIntro: String,

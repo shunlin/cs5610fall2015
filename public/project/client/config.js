@@ -21,11 +21,10 @@
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html",
             })
-            .when("/search", {
-                templateUrl: "views/search/search.view.html"
-            })
             .when("/search/:keyword", {
-                templateUrl: "views/search/search.view.html"
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController",
+                controllerAs: "model"
             })
             .when("/book/:bookId", {
                 templateUrl: "views/book/book.view.html",

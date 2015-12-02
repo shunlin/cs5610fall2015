@@ -6,7 +6,7 @@ module.exports = function(app, model) {
     app.get("/api/project/book/:bookId", findBookById);
     app.put("/api/project/book/:bookId", updateBook);
     app.delete("/api/project/book/:bookId", deleteBook);
-    app.get("/api/project/bookSearch/:bookTitle", findBooksByTitle);
+    app.get("/api/project/bookSearch/:keyword", findBooksByKeyword);
     app.get("/api/project/topTenSellerBooks/", getTopTenSellers);
     app.get("/api/project/tenLatestBooks/", getTenLatestBooks);
 
@@ -41,8 +41,8 @@ module.exports = function(app, model) {
         });
     }
 
-    function findBooksByTitle(req, res) {
-        model.findBooksByTitle(req.params.bookTitle).then(function(books) {
+    function findBooksByKeyword(req, res) {
+        model.findBooksByKeyword(req.params.keyword).then(function(books) {
             res.json(books);
         });
     }

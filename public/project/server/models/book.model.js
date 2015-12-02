@@ -13,7 +13,7 @@ module.exports = function(app, mongoose) {
         findByISBN: findByISBN,
         update: updateBook,
         delete: deleteBook,
-        findBooksByTitle: findBooksByTitle,
+        findBooksByKeyword: findBooksByKeyword,
         getTopTenSellers: getTopTenSellers,
         getTenLatestBooks: getTenLatestBooks
     };
@@ -65,12 +65,16 @@ module.exports = function(app, mongoose) {
             bookId,
             {
                 $set: {
+                    title: bookInfo.title,
                     author: bookInfo.author,
                     description: bookInfo.description,
                     authorIntro: bookInfo.authorIntro,
                     price: bookInfo.price,
                     quantity: bookInfo.quantity
                 }
+            },
+            {
+                upsert: true
             },
             function(err, book) {
                 if (err) deferred.reject(err);
@@ -92,11 +96,17 @@ module.exports = function(app, mongoose) {
         return deferred.promise;
     }
 
-    function findBooksByTitle(title) {
+    function findBooksByKeyword(keyword) {
         var deferred = q.defer();
-        BookModel.find({title: title}, function(err, books) {
-            if (err) deferred.reject(err);
-            else deferred.resolve(books);
+        BookModel.find({
+            $or: [
+                {title: new RegExp(keyword, "i")},
+                {author: new RegExp(keyword, "i")},
+                {description: new RegExp(keyword, "i")}
+            ]},
+            function(err, books) {
+                if (err) deferred.reject(err);
+                else deferred.resolve(books);
         });
 
         return deferred.promise;

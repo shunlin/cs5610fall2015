@@ -12,7 +12,8 @@
             deleteBook: deleteBook,
             updateBook: updateBook,
             getTenLatestBooks: getTenLatestBooks,
-            getTopTenSellers: getTopTenSellers
+            getTopTenSellers: getTopTenSellers,
+            getBooksByTitle: getBooksByTitle
 
         };
         return api;
@@ -75,6 +76,15 @@
             return deferred.promise;
         }
 
+        function getBooksByTitle(bookTitle) {
+            var deferred = $q.defer();
+            $http.get("/api/project/bookSearch/" + bookTitle).success(function(bookList) {
+                getBookInfoForList(bookList, deferred);
+            });
+            return deferred.promise;
+        }
+
+
         function getBookInfoForList(bookList, deferred) {
             $.ajax({
                 url: composeURL(bookList),
@@ -101,7 +111,7 @@
             var attriName = "ISBN:" + bookInfo.isbn;
             var apiInfo = infoArray[attriName].details;
 
-            bookInfo.title = apiInfo.title;
+            //bookInfo.title = apiInfo.title;
             bookInfo.image = "https://covers.openlibrary.org/b/id/" + apiInfo.covers[0].toString() + "-M.jpg";
             bookInfo.date = apiInfo.created.value.substring(0, 10);
             bookInfo.publisher = apiInfo.publishers[0];
@@ -109,7 +119,6 @@
             bookInfo.author = bookInfo.author.join(", ");
             return bookInfo;
         }
-
     }
 
 })();
