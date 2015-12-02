@@ -16,7 +16,8 @@
             updateUser: updateUser,
             deleteUser: deleteUser,
             findUserByUsername: findUserByUsername,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword
+            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            updatePassword: updatePassword
         };
         return api;
 
@@ -95,6 +96,18 @@
         function findUserByUsernameAndPassword(username, password) {
             var deferred = $q.defer();
             $http.get("/api/project/user?username=" + username + "&password=" + password)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function updatePassword(userId, password) {
+            var deferred = $q.defer();
+            var userInfo = {};
+            userInfo._id = userId;
+            userInfo.password = password;
+            $http.put("/api/project/userUpdatePassword", userInfo)
                 .success(function(response) {
                     deferred.resolve(response);
                 });

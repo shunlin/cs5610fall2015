@@ -11,7 +11,6 @@
         model.login = login;
 
         UserService.loggedin().then(function(res) {
-            console.log(res);
             if (res != null) $location.url("/profile");
         });
 

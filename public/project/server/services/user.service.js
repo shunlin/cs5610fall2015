@@ -1,7 +1,8 @@
 "use strict";
 
 module.exports = function(app, model, auth, passport) {
-    app.post("/api/project/login", passport.authenticate('local'), login);
+    app.post("/api/project/login", passport.authenticate('local',
+        { failureFlash: 'Invalid username or password.', successFlash: 'Welcome!' }), login);
     app.get("/api/project/loggedin", loggedin);
     app.get("/api/project/logout", logout);
     app.post("/api/project/register", register);
@@ -9,6 +10,7 @@ module.exports = function(app, model, auth, passport) {
     app.get("/api/assignment/user", getUser);
     app.put("/api/project/user/:userId", updateUser);
     app.delete("/api/project/user/:userId", deleteUser);
+    app.put("/api/project/userUpdatePassword", updatePassword);
 
     function login(req, res) {
         res.json(req.user);
@@ -73,6 +75,12 @@ module.exports = function(app, model, auth, passport) {
     function findUserByUsername(req, res) {
         model.findByUsername(req.params.username).then(function(users) {
             res.json(users);
+        });
+    }
+
+    function updatePassword(req, res) {
+        model.updatePassword(req.body).then(function(user) {
+            res.json(user);
         });
     }
 

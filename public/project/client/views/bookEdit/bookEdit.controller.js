@@ -17,13 +17,11 @@
         });
 
         function editBook() {
-            console.log(model.bookInfo.author);
             var authors = model.bookInfo.author.split(', ');
             model.bookInfo.author = [];
             for (var i = 0; i < authors.length; i++) {
                 model.bookInfo.author.push(authors[i]);
             }
-            console.log(model.bookInfo.author);
             BookService.updateBook(bookId, model.bookInfo).then(
                 function(book) {
                     $location.url('/book/' + book._id);

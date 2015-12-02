@@ -24,6 +24,8 @@
             })
             .when("/profile", {
                 templateUrl: "views/profile/profile.view.html",
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/search/:keyword", {
                 templateUrl: "views/search/search.view.html",

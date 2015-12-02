@@ -4,17 +4,20 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var multer = require('multer');
 var passport = require('passport');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
+var flash = require('connect-flash');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: "secret for my book"}));
-app.use(cookieParser());
+app.use(express.cookieParser('keyboard cat'));
+app.use(express.session({ secret: 'keyboard cat' }));
+app.use(express.session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;

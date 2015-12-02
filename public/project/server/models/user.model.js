@@ -10,7 +10,8 @@ module.exports = function(app, mongoose, UserModel) {
         findUserByUsernameAndPassword: findUserByUsernameAndPassword,
         findUserByUsername: findUserByUsername,
         update: updateUser,
-        delete: deleteUser
+        delete: deleteUser,
+        updatePassword: updatePassword
     };
     return api;
 
@@ -104,6 +105,23 @@ module.exports = function(app, mongoose, UserModel) {
             })
         });
 
+        return deferred.promise;
+    }
+
+    function updatePassword(userInfo) {
+        var deferred = q.defer();
+        UserModel.findByIdAndUpdate(
+            userInfo._id,
+            {
+                $set: {
+                    password: userInfo.password
+                }
+            },
+            function(err, user) {
+                if (err) deferred.reject(err);
+                else deferred.resolve(user);
+            }
+        );
         return deferred.promise;
     }
 };
