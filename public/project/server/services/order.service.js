@@ -4,9 +4,9 @@ module.exports = function(app, model, auth) {
     app.post("/api/project/order/:userId", createOrder);
     app.get("/api/project/allOrders/", findAllOrders);
     app.get("/api/project/order/:orderId", findOrderById);
-    app.get("/api/project/orderForUser/:userId", findOrdersForUser);
+    app.get("/api/project/order/user/:userId", findOrdersForUser);
     app.put("/api/project/order/:orderId", updateOrder);
-    app.put("/api/project/orderStatus/:orderId", updateOrderStatus);
+    app.put("/api/project/order/:orderId/status/", updateOrderStatus);
     app.delete("/api/project/order/:orderId", deleteOrder);
 
     function createOrder(req, res) {

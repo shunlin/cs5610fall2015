@@ -57,7 +57,7 @@
 
         function updateBookAfterSold(bookId, req) {
             var deferred = $q.defer();
-            $http.put("/api/project/bookSold/" + bookId, req).success(function(response) {
+            $http.put("/api/project/book/" + bookId + "/sold/", req).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
@@ -81,7 +81,7 @@
 
         function getBooksByTitle(bookTitle) {
             var deferred = $q.defer();
-            $http.get("/api/project/bookSearch/" + bookTitle).success(function(bookList) {
+            $http.get("/api/project/book/search/" + bookTitle).success(function(bookList) {
                 getBookInfoForList(bookList, deferred);
             });
             return deferred.promise;
@@ -89,7 +89,7 @@
 
         function getBooksByIds(ids) {
             var deferred = $q.defer();
-            $http.post("/api/project/bookList/", ids).success(function(bookList) {
+            $http.post("/api/project/book/list/", ids).success(function(bookList) {
                 getBookInfoForList(bookList, deferred);
             });
             return deferred.promise;

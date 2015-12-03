@@ -4,11 +4,11 @@ module.exports = function(app, model, auth) {
     app.post("/api/project/book/", createBook);
     app.get("/api/project/allBooks/", findAllBooks);
     app.get("/api/project/book/:bookId", findBookById);
-    app.post("/api/project/bookList/", findBooksByIds);
+    app.post("/api/project/book/list/", findBooksByIds);
     app.put("/api/project/book/:bookId", updateBook);
-    app.put("/api/project/bookSold/:bookId", updateBookAfterSold);
+    app.put("/api/project/book/:bookId/sold/", updateBookAfterSold);
     app.delete("/api/project/book/:bookId", deleteBook);
-    app.get("/api/project/bookSearch/:keyword", findBooksByKeyword);
+    app.get("/api/project/book/search/:keyword", findBooksByKeyword);
     app.get("/api/project/topTenSellerBooks/", getTopTenSellers);
     app.get("/api/project/tenLatestBooks/", getTenLatestBooks);
 

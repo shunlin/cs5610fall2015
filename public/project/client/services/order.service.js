@@ -45,7 +45,7 @@
                     booksInOrder[order.books[i].book._id].price = order.books[i].price;
                     ids.push(order.books[i].book);
                 }
-                $http.post("/api/project/bookList/", ids).success(function(bookList) {
+                $http.post("/api/project/book/list/", ids).success(function(bookList) {
                     getBookInfoForList(bookList, order, booksInOrder, deferred);
                 });
 
@@ -75,7 +75,7 @@
 
         function findOrdersForUser(userId) {
             var deferred = $q.defer();
-            $http.get("/api/project/orderForUser/" + userId).success(function(response) {
+            $http.get("/api/project/order/user/" + userId).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
@@ -93,7 +93,7 @@
             var deferred = $q.defer();
             var newOrder = {};
             newOrder.status = orderStatus;
-            $http.put("/api/project/orderStatus/" + orderId, newOrder).success(function(response) {
+            $http.put("/api/project/order/" + orderId + "/status/", newOrder).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
