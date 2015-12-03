@@ -1,5 +1,5 @@
 <h1 class="page-header">My Orders</h1>
-<div id="orderList">
+<div id="orderList" ng-controller="OrdersController">
     <table class="table table-striped table-hover">
         <tr>
             <th>Order ID</th>
@@ -8,19 +8,12 @@
             <th>Price</th>
             <th>Status</th>
         </tr>
-        <tr>
-            <td><a href="#/order/1">1</a></td>
-            <td>2015-10-04 11:11:01</td>
-            <td>Jack</td>
-            <td>$15</td>
-            <td>Shipped</td>
-        </tr>
-        <tr>
-            <td><a href="#/order/2">2</a></td>
-            <td>2015-06-04 12:48:03</td>
-            <td>Jack</td>
-            <td>$6</td>
-            <td>Completed</td>
+        <tr ng-repeat="order in model.orders">
+            <td><a href="#/order/{{order._id}}">{{order._id}}</a></td>
+            <td>{{model.formatTime(order.time)}}</td>
+            <td>{{order.receiver}}</td>
+            <td>${{order.totalPrice}}</td>
+            <td>{{order.status}}</td>
         </tr>
     </table>
 </div>

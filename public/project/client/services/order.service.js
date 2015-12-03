@@ -101,8 +101,8 @@
 
         function deleteOrder(orderId) {
             var deferred = $q.defer();
-            $http.delete("/api/project/order/" + orderId).success(function(response) {
-                deferred.resolve(response);
+            $http.delete("/api/project/order/" + orderId).success(function(orders) {
+                deferred.resolve(orders);
             });
             return deferred.promise;
         }

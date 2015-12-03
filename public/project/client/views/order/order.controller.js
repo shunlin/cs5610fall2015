@@ -12,6 +12,8 @@
             $location.url('/login');
             return;
         }
+        model.isAdmin = currentUser.group.indexOf('admin') != -1;
+
         var orderId = $routeParams.orderId;
         model.$location = $location;
         model.updateStatus = updateStatus;

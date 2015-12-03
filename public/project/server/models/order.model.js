@@ -12,7 +12,7 @@ module.exports = function(app) {
         findOrdersForUser: findOrdersForUser,
         update: updateOrder,
         updateOrderStatus: updateOrderStatus,
-        deleteOrder: deleteOrder
+        delete: deleteOrder
     };
     return api;
 
@@ -60,13 +60,13 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function updateOrderStatus(orderId, status) {
+    function updateOrderStatus(orderId, orderInfo) {
         var deferred = q.defer();
         OrderModel.findByIdAndUpdate(
             orderId,
             {
                 $set: {
-                    status: status
+                    status: orderInfo.status
                 }
             },
             {
@@ -106,7 +106,12 @@ module.exports = function(app) {
         var deferred = q.defer();
         OrderModel.findByIdAndRemove(orderId, function(err, res) {
             if (err) deferred.reject(err);
-            else deferred.resolve(res);
+            else {
+                OrderModel.find(function(err, orders) {
+                    if (err) deferred.reject(err);
+                    else deferred.resolve(orders);
+                });
+            }
         });
 
         return deferred.promise;

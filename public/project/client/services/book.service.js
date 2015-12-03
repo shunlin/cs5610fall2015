@@ -136,7 +136,7 @@
 
             //bookInfo.title = apiInfo.title;
             bookInfo.image = "https://covers.openlibrary.org/b/id/" + apiInfo.covers[0].toString() + "-M.jpg";
-            bookInfo.date = apiInfo.created.value.substring(0, 10);
+            bookInfo.date = apiInfo.created.value;
             bookInfo.publisher = apiInfo.publishers[0];
             bookInfo.page = apiInfo.number_of_pages;
             bookInfo.author = bookInfo.author.join(", ");

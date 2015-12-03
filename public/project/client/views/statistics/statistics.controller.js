@@ -7,7 +7,7 @@
 
     function StatisticsController($cookies, $rootScope, $location) {
         var currentUser = $cookies.getObject("user");
-        if (currentUser.group.indexOf('admin') != -1) {
+        if (currentUser == null || currentUser.group.indexOf('admin') == -1) {
             $location.url('/login');
             return;
         }

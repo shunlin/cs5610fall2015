@@ -18,7 +18,7 @@ module.exports = function(app, model, auth) {
     }
 
     function findAllOrders(req, res) {
-        model.findAllOrders().then(function(orders) {
+        model.findAll().then(function(orders) {
             res.json(orders);
         });
     }
@@ -42,7 +42,7 @@ module.exports = function(app, model, auth) {
     }
 
     function updateOrderStatus(req, res) {
-        model.update(req.params.orderId, req.body).then(function(order) {
+        model.updateOrderStatus(req.params.orderId, req.body).then(function(order) {
             res.json(order);
         });
     }

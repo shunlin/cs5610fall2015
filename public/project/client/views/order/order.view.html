@@ -31,16 +31,17 @@
         <p>Price: ${{model.order.totalPrice}}</p>
     </div>
 
-
-    <h3>Edit Order Status</h3>
-    <form class="form-inline"">
-        <select class="form-control" ng-model="model.newStatus">
-            <option>Processing</option>
-            <option>Shipped</option>
-            <option>Completed</option>
-        </select>
-        <input class="btn btn-primary" ng-click="model.updateStatus()" value="Update">
-    </form>
+    <div ng-show="model.isAdmin">
+        <h3>Edit Order Status</h3>
+        <form class="form-inline"">
+            <select class="form-control" ng-model="model.newStatus">
+                <option>Processing</option>
+                <option>Shipped</option>
+                <option>Completed</option>
+            </select>
+            <input class="btn btn-primary" ng-click="model.updateStatus()" value="Update">
+        </form>
+    </div>
 </div>
 
 

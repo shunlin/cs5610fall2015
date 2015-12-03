@@ -71,5 +71,10 @@
             console.log(cart);
             $location.url("/cart");
         }
+
+        function formatTime(timeString) {
+            var time = new Date(timeString);
+            return time.toDateString();
+        }
     }
 })();

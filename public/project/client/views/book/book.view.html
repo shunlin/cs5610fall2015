@@ -15,7 +15,7 @@
                 <span>Publisher</span>: {{model.bookInfo.publisher}}
             </p>
             <p class="textLabel">
-                <span>Published Date</span>: {{model.bookInfo.date}}
+                <span>Published Date</span>: {{model.formatTime(model.bookInfo.date)}}
             </p>
             <p class="textLabel">
                 <span>Pages</span>: {{model.bookInfo.page}}
