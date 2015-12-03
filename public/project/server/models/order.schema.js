@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var OrderSchema = mongoose.Schema({
     user: {type: mongoose.Schema.ObjectId, ref: "Users"},
     address: String,
+    telephone: String,
     status: {
         type: String,
         enum: ["Processing", "Shipped", "Completed"]
@@ -17,7 +18,10 @@ var OrderSchema = mongoose.Schema({
         price: Number
     }]
 }, {
-    collection: "cs5610.project.book"
+    collection: "cs5610.project.order"
 });
 
-module.exports = mongoose.model('Books', OrderSchema);
+module.exports = {
+    model: mongoose.model('Orders', OrderSchema),
+    schema: OrderSchema
+};

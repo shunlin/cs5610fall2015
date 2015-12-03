@@ -13,6 +13,7 @@ module.exports = function(app) {
         getBooksByIds: getBooksByIds,
         findByISBN: findByISBN,
         update: updateBook,
+        updateBookAfterSold: updateBookAfterSold,
         delete: deleteBook,
         findBooksByKeyword: findBooksByKeyword,
         getTopTenSellers: getTopTenSellers,
@@ -97,6 +98,28 @@ module.exports = function(app) {
                 upsert: true
             },
             function(err, book) {
+                if (err) deferred.reject(err);
+                else deferred.resolve(book);
+            }
+        );
+        return deferred.promise;
+    }
+
+    function updateBookAfterSold(bookId, bookInfo) {
+        console.log(bookInfo);
+        console.log(bookId);
+        var deferred = q.defer();
+        BookModel.findByIdAndUpdate(
+            bookId,
+            {
+                $inc: {sold: bookInfo.quantity},
+                $inc: {quantity: -bookInfo.quantity}
+            },
+            {
+                upsert: true
+            },
+            function(err, book) {
+                console.log(err);
                 if (err) deferred.reject(err);
                 else deferred.resolve(book);
             }

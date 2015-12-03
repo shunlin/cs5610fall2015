@@ -1,81 +1,72 @@
-<h1 class="page-header">Checkout</h1>
-<table class="table table-hover table-striped">
-    <tr>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Price</th>
-        <th>Number</th>
-        <th>Sum</th>
-    </tr>
-    <tr>
-        <td class="picture">
-            <img class="bookPicBlock" src="bookPic/1.jpg" />
-        </td>
-        <td class="textLabel"><a href="#/book/1">The Lost Codex (OPSIG Team Black)</a></td>
-        <td class="textLabel">Alan Jacobson</td>
-        <td class="textLabel">$14.21</td>
-        <td class="textLabel">2</td>
-        <td>$28.42</td>
-    </tr>
-    <tr>
-        <td class="picture">
-            <img class="bookPicBlock" src="bookPic/2.jpg" />
-        </td>
-        <td class="textLabel"><a href="#/book/2">Diary of a Wimpy Kid: Old School</a></td>
-        <td class="textLabel">Jeff Kinney</td>
-        <td class="textLabel">$7.92</td>
-        <td id="amount">1</td>
-        <td>$7.92</td>
-    </tr>
-</table>
-<div id="totalPriceInCheckout"><h3>Total: $36.34</h3></div>
+<div ng-controller="CheckoutController">
+    <h1 class="page-header">Checkout</h1>
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Number</th>
+            <th>Sum</th>
+        </tr>
+        <tr ng-repeat="book in model.bookList">
+            <td class="picture">
+                <img class="bookPicBlock" src="{{book.image}}" />
+            </td>
+            <td class="textLabel"><a href="#/book/{{book._id}}">{{book.title}}</a></td>
+            <td class="textLabel">{{book.author}}</td>
+            <td class="textLabel">${{book.price}}</td>
+            <td class="textLabel">{{book.number}}</td>
+            <td>${{book.linePrice}}</td>
+        </tr>
+    </table>
+    <div id="totalPriceInCheckout"><h3>Total: ${{model.totalPrice}}</h3></div>
 
 
-<div id="orderInfo">
-    <form class="form-horizontal" action="#/orders" method="post">
-        <h3>Shipping Information</h3>
-        <div class="form-group">
-            <label for="inputShipName" class="col-sm-2 control-label">Full Name:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputShipName" value="John Doe">
+    <div id="orderInfo">
+        <form class="form-horizontal">
+            <h3>Shipping Information</h3>
+            <div class="form-group">
+                <label for="inputShipName" class="col-sm-2 control-label">Full Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputShipName" ng-model="model.order.receiver">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputAddress" class="col-sm-2 control-label">Address:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputAddress" value="Northeastern University, Boston, MA 02111">
+            <div class="form-group">
+                <label for="inputAddress" class="col-sm-2 control-label">Address:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputAddress" ng-model="model.order.address">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPhone" class="col-sm-2 control-label">Phone:</label>
-            <div class="col-sm-10">
-                <input type="tel" class="form-control" id="inputPhone" value="617-812-3456">
+            <div class="form-group">
+                <label for="inputPhone" class="col-sm-2 control-label">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" id="inputPhone" ng-model="model.order.telephone">
+                </div>
             </div>
-        </div>
-        <h3>Payment Information</h3>
-        <div class="form-group">
-            <label for="inputCreditCard" class="col-sm-4 control-label">Credit Card Number:</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputCreditCard" placeholder="Card Number">
+            <h3>Payment Information</h3>
+            <div class="form-group">
+                <label for="inputCreditCard" class="col-sm-4 control-label">Credit Card Number:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputCreditCard" placeholder="Card Number" ng-model="model.cardNum">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputExpDate" class="col-sm-4 control-label">Expiration Time(MM/YY):</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputExpDate" placeholder="MM/YY">
+            <div class="form-group">
+                <label for="inputExpDate" class="col-sm-4 control-label">Expiration Time(MM/YY):</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputExpDate" placeholder="MM/YY" ng-model="model.expDate">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputCVV" class="col-sm-4 control-label">CVV:</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputCVV" placeholder="MM/YY">
+            <div class="form-group">
+                <label for="inputCVV" class="col-sm-4 control-label">CVV:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputCVV" placeholder="XXX" ng-model="model.cvv">
+                </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Checkout</button>
-    </form>
+            <button class="btn btn-primary btn-block" ng-click="model.submitOrder()">Checkout</button>
+        </form>
+    </div>
 </div>
-
 
 
 

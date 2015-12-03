@@ -6,6 +6,7 @@ module.exports = function(app, model, auth) {
     app.get("/api/project/book/:bookId", findBookById);
     app.post("/api/project/bookList/", findBooksByIds);
     app.put("/api/project/book/:bookId", updateBook);
+    app.put("/api/project/bookSold/:bookId", updateBookAfterSold);
     app.delete("/api/project/book/:bookId", deleteBook);
     app.get("/api/project/bookSearch/:keyword", findBooksByKeyword);
     app.get("/api/project/topTenSellerBooks/", getTopTenSellers);
@@ -33,6 +34,12 @@ module.exports = function(app, model, auth) {
 
     function updateBook(req, res) {
         model.update(req.params.bookId, req.body).then(function(book) {
+            res.json(book);
+        });
+    }
+
+    function updateBookAfterSold(req, res) {
+        model.updateBookAfterSold(req.params.bookId, req.body).then(function(book) {
             res.json(book);
         });
     }

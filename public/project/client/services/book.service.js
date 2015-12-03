@@ -12,6 +12,7 @@
             addBook: addBook,
             deleteBook: deleteBook,
             updateBook: updateBook,
+            updateBookAfterSold: updateBookAfterSold,
             getTenLatestBooks: getTenLatestBooks,
             getTopTenSellers: getTopTenSellers,
             getBooksByTitle: getBooksByTitle,
@@ -49,6 +50,14 @@
         function updateBook(bookId, bookInfo) {
             var deferred = $q.defer();
             $http.put("/api/project/book/" + bookId, bookInfo).success(function(response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
+        }
+
+        function updateBookAfterSold(bookId, req) {
+            var deferred = $q.defer();
+            $http.put("/api/project/bookSold/" + bookId, req).success(function(response) {
                 deferred.resolve(response);
             });
             return deferred.promise;
@@ -149,6 +158,7 @@
             });
             return deferred.promise;
         }
+
     }
 
 })();

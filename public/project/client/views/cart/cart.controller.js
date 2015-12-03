@@ -51,8 +51,9 @@
                     model.totalPrice = model.totalPrice + bookList[i].linePrice;
                     model.bookList.push(bookList[i]);
                 }
+                model.totalPrice = truncToTwoBits(model.totalPrice);
             });
-            model.totalPrice = truncToTwoBits(model.totalPrice);
+
         }
 
         function truncToTwoBits(number) {
