@@ -4,11 +4,13 @@ module.exports = function(app, model, auth) {
     app.post("/api/project/book/", createBook);
     app.get("/api/project/allBooks/", findAllBooks);
     app.get("/api/project/book/:bookId", findBookById);
+    app.post("/api/project/bookList/", findBooksByIds);
     app.put("/api/project/book/:bookId", updateBook);
     app.delete("/api/project/book/:bookId", deleteBook);
     app.get("/api/project/bookSearch/:keyword", findBooksByKeyword);
     app.get("/api/project/topTenSellerBooks/", getTopTenSellers);
     app.get("/api/project/tenLatestBooks/", getTenLatestBooks);
+
 
     function createBook(req, res) {
         var newBook = req.body;
@@ -56,6 +58,12 @@ module.exports = function(app, model, auth) {
     function getTenLatestBooks(req, res) {
         model.getTenLatestBooks().then(function(books) {
             res.json(books);
+        });
+    }
+
+    function findBooksByIds(req, res) {
+        model.getBooksByIds(req.body).then(function(books) {
+            res.json(books)
         });
     }
 };

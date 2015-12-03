@@ -43,7 +43,9 @@
                 controllerAs: "model"
             })
             .when("/cart", {
-                templateUrl: "views/cart/cart.view.html"
+                templateUrl: "views/cart/cart.view.html",
+                controller: "CartController",
+                controllerAs: "model"
             })
             .when("/checkout", {
                 templateUrl: "views/checkout/checkout.view.html"

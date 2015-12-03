@@ -5,7 +5,7 @@
         .module("MyBook")
         .controller("BookController", BookController);
 
-    function BookController($location, $routeParams, $rootScope, BookService) {
+    function BookController($location, $routeParams, $rootScope, $cookies, BookService) {
         var model = this;
         var bookId = $routeParams.bookId;
         model.$location = $location;
@@ -14,6 +14,7 @@
         model.removeComment = removeComment;
         model.addComment = addComment;
         model.formatTime = formatTime;
+        model.addToCart = addToCart;
         model.newComment = {};
 
 
@@ -53,6 +54,20 @@
         function formatTime(timeString) {
             var time = new Date(timeString);
             return time.toDateString();
+        }
+
+        function addToCart() {
+            var cart = {};
+            if ($cookies.getObject("cart") == null) {
+                $cookies.putObject("cart", cart);
+            }
+            cart = $cookies.getObject("cart");
+
+            if (cart[bookId] == null) cart[bookId] = Number(1);
+            else cart[bookId] = Number(cart[bookId]) + 1;
+            $cookies.putObject("cart", cart);
+            console.log(cart);
+            $location.url("/cart");
         }
     }
 })();

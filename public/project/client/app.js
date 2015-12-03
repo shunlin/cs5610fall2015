@@ -2,5 +2,5 @@
 
 (function(){
     angular
-        .module("MyBook", ["ngRoute"]);
+        .module("MyBook", ["ngRoute", "ngCookies"]);
 })();

@@ -10,6 +10,7 @@ module.exports = function(app) {
         create: createBook,
         findAll: findAllBooks,
         findById: findById,
+        getBooksByIds: getBooksByIds,
         findByISBN: findByISBN,
         update: updateBook,
         delete: deleteBook,
@@ -20,7 +21,8 @@ module.exports = function(app) {
         findAllCommentsForBook: findAllCommentsForBook,
         findCommentForBook: findCommentForBook,
         updateCommentForBook: updateCommentForBook,
-        deleteCommentForBook: deleteCommentForBook
+        deleteCommentForBook: deleteCommentForBook,
+
     };
     return api;
 
@@ -52,6 +54,16 @@ module.exports = function(app) {
         }).populate({
             path: 'comments',
             populate: { path: 'user'}
+        });
+
+        return deferred.promise;
+    }
+
+    function getBooksByIds(bookIds) {
+        var deferred = q.defer();
+        BookModel.find({ _id : { $in : bookIds } }, function(err, book) {
+            if (err) deferred.reject(err);
+            else deferred.resolve(book);
         });
 
         return deferred.promise;

@@ -26,7 +26,7 @@
             <p class="textLabel">
                 <span>Available</span>: {{model.bookInfo.quantity}}
             </p>
-            <a><button class="btn btn-primary">Add To Cart</button></a>
+            <a ng-click="model.addToCart()"><button class="btn btn-primary">Add To Cart</button></a>
             <a ng-click="model.delete()"><button class="btn btn-danger">Delete</button></a>
             <a ng-click="model.edit()"><button class="btn btn-primary">Edit</button></a>
         </div>
