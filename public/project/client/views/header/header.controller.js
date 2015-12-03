@@ -5,7 +5,8 @@
        .module("MyBook")
        .controller("HeaderController", HeaderController);
 
-    function HeaderController($location, $rootScope, UserService) {
+    function HeaderController($location, $cookies, UserService, $scope) {
+        // This function need $scope because it is using $scope.$on to listen the event.
         var model = this;
         model.$location = $location;
         model.search = search;
@@ -13,10 +14,16 @@
 
         UserService.loggedin().then(function(user) {
             if (user != null) {
-                $rootScope.currentUser = user;
+                user.password = "";
+                $cookies.putObject("user", user);
             } else {
-                $rootScope.currentUser = null;
+                $cookies.putObject("user", null);
             }
+        });
+        model.currentUser = $cookies.getObject("user");
+
+        $scope.$on('user.logged.in', function (event, user) {
+            model.currentUser = user;
         });
 
         function search() {
@@ -25,7 +32,8 @@
 
         function logout() {
             UserService.logout().then(function() {
-                $rootScope.currentUser = null;
+                $cookies.putObject("user", null);
+                model.currentUser = $cookies.getObject("user");
                 $location.url("/home");
             })
         }

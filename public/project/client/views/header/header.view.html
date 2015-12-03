@@ -15,7 +15,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" ng-show="currentUser!=null&&currentUser.group.indexOf('admin')!=-1">
+                <li class="dropdown" ng-show="model.currentUser!=null&&model.currentUser.group.indexOf('admin')!=-1">
                     <a class="dropdown-toggle" data-toggle="dropdown">Admin
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -24,12 +24,12 @@
                         <li><a href="#/statistics" ng-class="{'active' : $location.url() == '/statistics'}">Selling Statistics</a></li>
                     </ul>
                 </li>
-                <li><a href="#/orders" ng-class="{'active' : $location.url() == '/orders'}" ng-show="currentUser!=null">Orders</a></li>
-                <li><a href="#/login" ng-class="{'active' : $location.url() == '/login'}" ng-show="currentUser==null">Login</a></li>
-                <li><a href="#/cart" ng-class="{'active' : $location.url() == '/cart'}" ng-show="currentUser!=null">Cart</a></li>
-                <li><a href="#/register" ng-class="{'active' : $location.url() == '/register'}" ng-show="currentUser==null">Register</a></li>
-                <li><a href="#/profile" ng-class="{'active' : $location.url() == '/profile'}" ng-show="currentUser!=null">{{currentUser.username}}</a></li>
-                <li><a ng-click="model.logout()" ng-show="currentUser!=null">Logout</a></li>
+                <li><a href="#/orders" ng-class="{'active' : $location.url() == '/orders'}" ng-show="model.currentUser!=null">Orders</a></li>
+                <li><a href="#/login" ng-class="{'active' : $location.url() == '/login'}" ng-show="model.currentUser==null">Login</a></li>
+                <li><a href="#/cart" ng-class="{'active' : $location.url() == '/cart'}" ng-show="model.currentUser!=null">Cart</a></li>
+                <li><a href="#/register" ng-class="{'active' : $location.url() == '/register'}" ng-show="model.currentUser==null">Register</a></li>
+                <li><a href="#/profile" ng-class="{'active' : $location.url() == '/profile'}" ng-show="model.currentUser!=null">{{model.currentUser.username}}</a></li>
+                <li><a ng-click="model.logout()" ng-show="model.currentUser!=null">Logout</a></li>
             </ul>
             <form class="navbar-form navbar-left">
                 <input type="text" class="form-control" placeholder="Search..." ng-model="model.keyword">

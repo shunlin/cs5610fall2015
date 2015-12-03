@@ -5,8 +5,13 @@
         .module("MyBook")
         .controller("OrderController", OrderController);
 
-    function OrderController($location, $routeParams, OrderService) {
+    function OrderController($location, $cookies, $routeParams, OrderService) {
         var model = this;
+        var currentUser = $cookies.getObject("user");
+        if (currentUser == null) {
+            $location.url('/login');
+            return;
+        }
         var orderId = $routeParams.orderId;
         model.$location = $location;
         model.updateStatus = updateStatus;

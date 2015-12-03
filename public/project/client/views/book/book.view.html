@@ -27,8 +27,8 @@
                 <span>Available</span>: {{model.bookInfo.quantity}}
             </p>
             <a ng-click="model.addToCart()"><button class="btn btn-primary">Add To Cart</button></a>
-            <a ng-click="model.delete()"><button class="btn btn-danger">Delete</button></a>
-            <a ng-click="model.edit()"><button class="btn btn-primary">Edit</button></a>
+            <a ng-click="model.delete()" ng-show="model.isAdmin"><button class="btn btn-danger">Delete</button></a>
+            <a ng-click="model.edit()" ng-show="model.isAdmin"><button class="btn btn-primary">Edit</button></a>
         </div>
 
         <div class="sndTitle">Author</div>
@@ -47,7 +47,7 @@
                     <div class="userPicBlock col-sm-3">
                         <img class="userPicSmall" src="{{comment.user.imageURL}}"/>
                         {{comment.user.username}}
-                        <button class="btn btn-danger" ng-click="model.removeComment(comment)" ng-show="currentUser!=null&&currentUser.group.indexOf('admin')!=-1">Delete</button>
+                        <button class="btn btn-danger" ng-click="model.removeComment(comment)" ng-show="model.isAdmin">Delete</button>
                     </div>
                     <div class="commentInfo col-sm-10">
                         <h5>{{comment.title}} <span class="smallerText">Rating: {{comment.grade}}</span></h5>
@@ -62,7 +62,7 @@
         </div>
 
         <p class="sndTitle">Add New Comment</p>
-        <div ng-show="currentUser!=null">
+        <div ng-show="model.currentUser!=null">
             <form class="form-horizontal">
                 <div class="form-group">
                     <label for="inputTitle" class="col-sm-2 control-label">Comment Title:</label>
@@ -95,7 +95,7 @@
                 </div>
             </form>
         </div>
-        <div ng-show="currentUser==null">
+        <div ng-show="model.currentUser==null">
             <p>You can add comments after <a href="#/login">Login</a> </p>
         </div>
         </div>

@@ -5,12 +5,19 @@
         .module("MyBook")
         .controller("AddBookController", AddBookController);
 
-    function AddBookController($location, BookService) {
+    function AddBookController($location, $cookies, BookService) {
         var model = this;
+        model.$location = $location;
+        var currentUser = $cookies.getObject("user");
+        if (currentUser.group.indexOf('admin') != -1) {
+            $location.url('/login');
+            return;
+        }
+
+
         model.newBook = {};
         var newBook = model.newBook;
         model.addBook = addBook;
-        model.$location = $location;
 
         function addBook() {
             var authors = newBook.authorString.split(', ');

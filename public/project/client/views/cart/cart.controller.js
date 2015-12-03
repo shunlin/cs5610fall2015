@@ -12,6 +12,11 @@
         model.updateNumber = updateNumber;
         model.deleteBook = deleteBook;
         var cartBooks = $cookies.getObject("cart");
+        model.currentUser = $cookies.getObject("user");
+        if (model.currentUser == null) {
+            $location.url('/login');
+            return;
+        }
 
         if (cartBooks != null) {
             getInfoFromCookies(cartBooks, model);

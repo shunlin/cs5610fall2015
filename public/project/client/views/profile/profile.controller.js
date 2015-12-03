@@ -5,8 +5,13 @@
         .module("MyBook")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($location, UserService) {
+    function ProfileController($location, $cookies, UserService) {
         var model = this;
+        var currentUser = $cookies.getObject("user");
+        if (currentUser == null) {
+            $location.url('/login');
+            return;
+        }
         model.updateUser = updateUser;
         model.$location = $location;
         model.updatePassword = updatePassword;

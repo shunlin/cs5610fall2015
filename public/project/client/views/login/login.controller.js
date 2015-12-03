@@ -5,7 +5,7 @@
         .module("MyBook")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $location, UserService) {
+    function LoginController($rootScope, $location, UserService, $cookies) {
         var model = this;
         model.$location = $location;
         model.login = login;
@@ -22,7 +22,9 @@
             UserService.login(user).then(function(user) {
                 if (user === null) alert("Wrong username or password!");
                 else {
-                    $rootScope.currentUser = user;
+                    user.password = "";
+                    $cookies.putObject("user", user);
+                    $rootScope.$broadcast('user.logged.in', user);
                     $location.url('/profile');
                 }
             });

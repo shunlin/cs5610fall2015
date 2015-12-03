@@ -5,7 +5,7 @@
         .module("MyBook")
         .controller("BookController", BookController);
 
-    function BookController($location, $routeParams, $rootScope, $cookies, BookService) {
+    function BookController($location, $routeParams, $cookies, BookService) {
         var model = this;
         var bookId = $routeParams.bookId;
         model.$location = $location;
@@ -16,6 +16,8 @@
         model.formatTime = formatTime;
         model.addToCart = addToCart;
         model.newComment = {};
+        model.currentUser = $cookies.getObject("user");
+        model.isAdmin = (model.currentUser != null && model.currentUser.group.indexOf('admin') != -1);
 
 
         BookService.getBookInfoById(bookId).then(function(bookInfo) {
@@ -42,7 +44,7 @@
 
         function addComment() {
             var newComment = model.newComment;
-            newComment.user = $rootScope.currentUser._id;
+            newComment.user = model.currentUser._id;
 
             BookService.addCommentForBook(bookId, newComment).then(function(book) {
                 BookService.getBookInfoById(book._id).then(function(bookInfo) {

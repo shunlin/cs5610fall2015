@@ -5,8 +5,14 @@
         .module("MyBook")
         .controller("BookEditController", BookEditController);
 
-    function BookEditController($location, $routeParams, BookService) {
+    function BookEditController($location, $cookies, $routeParams, BookService) {
         var model = this;
+        model.$location = $location;
+        var currentUser = $cookies.getObject("user");
+        if (currentUser.group.indexOf('admin') != -1) {
+            $location.url('/login');
+            return;
+        }
         var bookId = $routeParams.bookId;
 
         model.editBook = editBook;

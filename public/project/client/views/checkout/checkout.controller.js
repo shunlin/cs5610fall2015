@@ -7,19 +7,14 @@
 
     function CheckoutController($rootScope, $location, $cookies, OrderService, BookService, UserService) {
         var model = this;
-        var currentUser;
-        UserService.loggedin().then(function(user) {
-            if (user != null) {
-                $rootScope.currentUser = user;
-                init();
-            } else {
-                $rootScope.currentUser = null;
-                $location.url('/login');
-            }
-        });
+        var currentUser = $cookies.getObject("user");
+        if (currentUser == null) {
+            $location.url('/login');
+            return;
+        }
+        init();
 
         function init() {
-            currentUser = $rootScope.currentUser;
             model.$location = $location;
             model.submitOrder = submitOrder;
             model.totalPrice = 0;
