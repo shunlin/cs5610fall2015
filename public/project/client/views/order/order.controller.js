@@ -13,13 +13,17 @@
         model.formatTime = formatTime;
 
         OrderService.findOrderById(orderId).then(function(order) {
-            console.log(order);
             model.order = order;
         });
 
 
         function updateStatus() {
-
+            OrderService.updateOrderStatus(orderId, model.newStatus).then(function(order) {
+                OrderService.findOrderById(order._id).then(function(order) {
+                    console.log(order);
+                    model.order = order;
+                });
+            })
         }
 
         function formatTime(timeString) {

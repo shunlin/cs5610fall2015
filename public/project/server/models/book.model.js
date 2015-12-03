@@ -110,8 +110,7 @@ module.exports = function(app) {
         BookModel.findByIdAndUpdate(
             bookId,
             {
-                $inc: {sold: bookInfo.quantity},
-                $inc: {quantity: -bookInfo.quantity}
+                $inc: {sold: bookInfo.quantity, quantity: -bookInfo.quantity},
             },
             {
                 upsert: true
