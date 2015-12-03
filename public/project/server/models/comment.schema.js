@@ -11,4 +11,4 @@ var CommentSchema = mongoose.Schema({
 module.exports = {
     model: mongoose.model('Comments', CommentSchema),
     schema: CommentSchema
-}
+};

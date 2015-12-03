@@ -1,6 +1,6 @@
 "use strict";
 var mongoose = require('mongoose');
-var CommentModel = require("./comment.schema.js");
+var CommentSchema = require("./comment.schema.js").schema;
 
 var BookSchema = mongoose.Schema({
     isbn: String,
@@ -12,9 +12,12 @@ var BookSchema = mongoose.Schema({
     quantity: Number,
     sold: {type: Number, default: 0},
     addDate: {type: Date, default: Date.now},
-    comments: [CommentModel.schema]
+    comments: [CommentSchema]
 }, {
     collection: "cs5610.project.book"
 });
 
-module.exports = mongoose.model('BookModel', BookSchema);
+module.exports = {
+    model: mongoose.model('Books', BookSchema),
+    schema: BookSchema
+};

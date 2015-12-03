@@ -15,4 +15,7 @@ var UserSchema = mongoose.Schema({
     collection: "cs5610.project.user"
 });
 
-module.exports = mongoose.model('Users', UserSchema);
+module.exports = {
+    model: mongoose.model('Users', UserSchema),
+    schema: UserSchema
+};

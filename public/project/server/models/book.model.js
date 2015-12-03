@@ -3,7 +3,7 @@
 var q = require("q");
 
 module.exports = function(app) {
-    var BookModel = require("./book.schema.js");
+    var BookModel = require("./book.schema.js").model;
     var CommentModel = require("./comment.schema.js").model;
 
     var api = {

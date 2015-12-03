@@ -2,7 +2,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(app, db, mongoose, passport) {
-    var UserModel = require("./models/user.schema.js");
+    var UserModel = require("./models/user.schema.js").model;
 
     passport.use(new LocalStrategy(
         function(username, password, done) {
@@ -37,7 +37,9 @@ module.exports = function(app, db, mongoose, passport) {
 
     var books = require("./models/book.model.js")(app);
     var users = require("./models/user.model.js")(app);
+    var orders = require("./models/order.model.js")(app);
     require("./services/book.service.js")(app, books, auth);
     require("./services/user.service.js")(app, users, auth, passport);
     require("./services/comment.service.js")(app, books, auth);
+    require("./services/order.service.js")(app, orders, auth);
 };

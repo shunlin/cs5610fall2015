@@ -3,7 +3,7 @@
 var q = require("q");
 
 module.exports = function(app) {
-    var UserModel = require("./user.schema.js");
+    var UserModel = require("./user.schema.js").model;
     var api = {
         create: createUser,
         findAll: findAllUsers,
