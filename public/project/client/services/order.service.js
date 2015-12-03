@@ -38,10 +38,11 @@
             $http.get("/api/project/order/" + orderId).success(function(order) {
                 var booksInOrder = {};
                 var ids = [];
-                order.booksWithInfo  ={};
+                order.booksWithInfo = [];
                 for (var i = 0; i < order.books.length; i++) {
-                    booksInOrder[order.books[i].book].quantity = order.books[i].quantity;
-                    booksInOrder[order.books[i].book].price = order.books[i].price;
+                    booksInOrder[order.books[i].book._id] = {};
+                    booksInOrder[order.books[i].book._id].bookNumber = order.books[i].quantity;
+                    booksInOrder[order.books[i].book._id].price = order.books[i].price;
                     ids.push(order.books[i].book);
                 }
                 $http.post("/api/project/bookList/", ids).success(function(bookList) {
@@ -62,9 +63,9 @@
                         for (var i = 0; i < bookList.length; i++) {
                             var bookId = bookList[i]._id;
                             bookList[i] = combineApiInfo(bookList[i], response);
-                            bookList[i].quantity = booksInOrder[bookId].quantity;
+                            bookList[i].bookNumber = booksInOrder[bookId].bookNumber;
                             bookList[i].price = booksInOrder[bookId].price;
-                            bookList[i].linePrice = truncToTwoBits(bookList[i].quantity * bookList[i].price);
+                            bookList[i].linePrice = truncToTwoBits(bookList[i].bookNumber * bookList[i].price);
                             order.booksWithInfo.push(bookList[i]);
                         }
                         deferred.resolve(order);

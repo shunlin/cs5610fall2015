@@ -106,8 +106,6 @@ module.exports = function(app) {
     }
 
     function updateBookAfterSold(bookId, bookInfo) {
-        console.log(bookInfo);
-        console.log(bookId);
         var deferred = q.defer();
         BookModel.findByIdAndUpdate(
             bookId,
@@ -119,7 +117,6 @@ module.exports = function(app) {
                 upsert: true
             },
             function(err, book) {
-                console.log(err);
                 if (err) deferred.reject(err);
                 else deferred.resolve(book);
             }

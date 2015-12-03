@@ -53,13 +53,19 @@
                 controllerAs: "model"
             })
             .when("/orders", {
-                templateUrl: "views/orders/orders.view.html"
+                templateUrl: "views/orders/orders.view.html",
+                controller: "OrdersController",
+                controllerAs: "model"
             })
-            .when("/order/:id", {
-                templateUrl: "views/order/order.view.html"
+            .when("/order/:orderId", {
+                templateUrl: "views/order/order.view.html",
+                controller: "OrderController",
+                controllerAs: "model"
             })
             .when("/allOrders", {
-                templateUrl: "views/allOrders/allOrders.view.html"
+                templateUrl: "views/allOrders/allOrders.view.html",
+                controller: "AllOrdersController",
+                controllerAs: "model"
             })
             .when("/addBook", {
                 templateUrl: "views/addBook/addBook.view.html",
