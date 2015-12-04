@@ -31,7 +31,7 @@ module.exports = function(app) {
         OrderModel.find(function(err, orders) {
             if (err) deferred.reject(err);
             else deferred.resolve(orders);
-        });
+        }).sort({'time': -1});
         return deferred.promise;
     }
 
@@ -56,7 +56,7 @@ module.exports = function(app) {
         }).populate({
             path: 'books',
             populate: { path: 'book'}
-        });
+        }).sort({'time': -1});
 
         return deferred.promise;
     }
@@ -131,7 +131,7 @@ module.exports = function(app) {
         }).populate({
             path: 'books',
             populate: { path: 'book'}
-        }).populate('user');
+        }).populate('user').sort({'time': 1});
 
         return deferred.promise;
     }
