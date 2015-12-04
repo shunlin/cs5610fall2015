@@ -68,7 +68,6 @@
             if (cart[bookId] == null) cart[bookId] = Number(1);
             else cart[bookId] = Number(cart[bookId]) + 1;
             $cookies.putObject("cart", cart);
-            console.log(cart);
             $location.url("/cart");
         }
 

@@ -1,13 +1,13 @@
 "use strict";
 
-module.exports = function(app, model, auth) {
-    app.post("/api/project/book/", createBook);
-    app.get("/api/project/allBooks/", findAllBooks);
+module.exports = function(app, model, auth, isAdmin) {
+    app.post("/api/project/book/", isAdmin, createBook);
+    app.get("/api/project/allBooks/", isAdmin, findAllBooks);
     app.get("/api/project/book/:bookId", findBookById);
     app.post("/api/project/book/list/", findBooksByIds);
-    app.put("/api/project/book/:bookId", updateBook);
-    app.put("/api/project/book/:bookId/sold/", updateBookAfterSold);
-    app.delete("/api/project/book/:bookId", deleteBook);
+    app.put("/api/project/book/:bookId", isAdmin, updateBook);
+    app.put("/api/project/book/:bookId/sold/", auth, updateBookAfterSold);
+    app.delete("/api/project/book/:bookId", isAdmin, deleteBook);
     app.get("/api/project/book/search/:keyword", findBooksByKeyword);
     app.get("/api/project/topTenSellerBooks/", getTopTenSellers);
     app.get("/api/project/tenLatestBooks/", getTenLatestBooks);

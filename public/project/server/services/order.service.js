@@ -1,14 +1,14 @@
 "use strict";
 
-module.exports = function(app, model, auth) {
-    app.post("/api/project/order/:userId", createOrder);
-    app.get("/api/project/allOrders/", findAllOrders);
-    app.get("/api/project/order/:orderId", findOrderById);
-    app.get("/api/project/order/user/:userId", findOrdersForUser);
-    app.put("/api/project/order/:orderId", updateOrder);
-    app.put("/api/project/order/:orderId/status/", updateOrderStatus);
-    app.delete("/api/project/order/:orderId", deleteOrder);
-    app.post("/api/project/orders/timeRange", findOrderInTimeRange);
+module.exports = function(app, model, auth, isAdmin) {
+    app.post("/api/project/order/:userId", auth, createOrder);
+    app.get("/api/project/allOrders/", isAdmin, findAllOrders);
+    app.get("/api/project/order/:orderId", auth, findOrderById);
+    app.get("/api/project/order/user/:userId", auth, findOrdersForUser);
+    app.put("/api/project/order/:orderId", isAdmin, updateOrder);
+    app.put("/api/project/order/:orderId/status/", isAdmin, updateOrderStatus);
+    app.delete("/api/project/order/:orderId", isAdmin, deleteOrder);
+    app.post("/api/project/orders/timeRange", isAdmin, findOrderInTimeRange);
 
     function createOrder(req, res) {
         var newOrder = req.body;

@@ -27,7 +27,6 @@
         defaultTimeRange.endTime = defaultEndTime;
 
         OrderService.findOrderInTimeRange(defaultTimeRange).then(function(orders) {
-            console.log(orders);
             initData(orders);
         });
 
@@ -109,7 +108,6 @@
         }
 
         function getBestBuyer(buyerAndBought) {
-            console.log(buyerAndBought);
             var bestBuyer = "";
             var boughtPrice = 0;
             for (var obj in buyerAndBought) {

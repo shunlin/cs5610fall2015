@@ -35,11 +35,20 @@ module.exports = function(app, db, mongoose, passport) {
         } else next();
     };
 
+    var isAdmin = function(req, res, next) {
+        if (req.isAuthenticated() &&
+            req.user != null &&
+            req.user.group != null &&
+            req.user.group.indexOf('admin') != -1) {
+            next();
+        } else res.send(401);
+    };
+
     var books = require("./models/book.model.js")(app);
     var users = require("./models/user.model.js")(app);
     var orders = require("./models/order.model.js")(app);
-    require("./services/book.service.js")(app, books, auth);
-    require("./services/user.service.js")(app, users, auth, passport);
-    require("./services/comment.service.js")(app, books, auth);
-    require("./services/order.service.js")(app, orders, auth);
+    require("./services/book.service.js")(app, books, auth, isAdmin);
+    require("./services/user.service.js")(app, users, auth, isAdmin, passport);
+    require("./services/comment.service.js")(app, books, auth, isAdmin);
+    require("./services/order.service.js")(app, orders, auth, isAdmin);
 };

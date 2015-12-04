@@ -1,11 +1,11 @@
 "use strict";
 
-module.exports = function(app, model, auth) {
-    app.post("/api/project/book/:bookId/comment/", createComment);
+module.exports = function(app, model, auth, isAdmin) {
+    app.post("/api/project/book/:bookId/comment/", auth, createComment);
     app.get("/api/project/book/:bookId/comments/", findAllComments);
     app.get("/api/project/book/:bookId/comment/:commentId", findCommentById);
-    app.put("/api/project/book/:bookId/comment/:commentId", updateComment);
-    app.delete("/api/project/book/:bookId/comment/:commentId", deleteComment);
+    app.put("/api/project/book/:bookId/comment/:commentId", auth, updateComment);
+    app.delete("/api/project/book/:bookId/comment/:commentId", isAdmin, deleteComment);
 
     function createComment(req, res) {
         var newComment = req.body;

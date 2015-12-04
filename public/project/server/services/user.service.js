@@ -1,16 +1,16 @@
 "use strict";
 
-module.exports = function(app, model, auth, passport) {
+module.exports = function(app, model, auth, isAdmin, passport) {
     app.post("/api/project/login", passport.authenticate('local',
         { failureFlash: 'Invalid username or password.', successFlash: 'Welcome!' }), login);
     app.get("/api/project/loggedin", loggedin);
     app.get("/api/project/logout", logout);
     app.post("/api/project/register", register);
-    app.get("/api/project/allUsers/", findAllUsers);
-    app.get("/api/assignment/user", getUser);
-    app.put("/api/project/user/:userId", updateUser);
-    app.delete("/api/project/user/:userId", deleteUser);
-    app.put("/api/project/userUpdatePassword", updatePassword);
+    app.get("/api/project/allUsers/", isAdmin, findAllUsers);
+    app.get("/api/project/user", getUser);
+    app.put("/api/project/user/:userId", auth, updateUser);
+    app.delete("/api/project/user/:userId", isAdmin, deleteUser);
+    app.put("/api/project/userUpdatePassword", auth, updatePassword);
 
     function login(req, res) {
         res.json(req.user);
