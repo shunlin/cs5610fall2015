@@ -125,7 +125,7 @@
                 var month = obj.split("-")[1];
                 var year = obj.split("-")[0];
                 var lineItem = [];
-                var xAxis = {v: new Date(Number(year), Number(month)), f: obj};
+                var xAxis = {v: new Date(Number(year), Number(month)), f: year + "-" + (Number(month) + 1)};
                 var yAxis = truncToTwoBits(monthAndTotalSold[obj]);
                 lineItem.push(xAxis);
                 lineItem.push(yAxis);
