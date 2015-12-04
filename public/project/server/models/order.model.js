@@ -12,7 +12,8 @@ module.exports = function(app) {
         findOrdersForUser: findOrdersForUser,
         update: updateOrder,
         updateOrderStatus: updateOrderStatus,
-        delete: deleteOrder
+        delete: deleteOrder,
+        findOrderInTimeRange: findOrderInTimeRange
     };
     return api;
 
@@ -113,6 +114,24 @@ module.exports = function(app) {
                 });
             }
         });
+
+        return deferred.promise;
+    }
+
+    function findOrderInTimeRange(startTime, endTime) {
+        var deferred = q.defer();
+        OrderModel.find({
+            time: {
+                $gte: startTime,
+                $lt: endTime
+            }
+        }, function(err, orders) {
+            if (err) deferred.reject(err);
+            else deferred.resolve(orders);
+        }).populate({
+            path: 'books',
+            populate: { path: 'book'}
+        }).populate('user');
 
         return deferred.promise;
     }

@@ -8,6 +8,7 @@ module.exports = function(app, model, auth) {
     app.put("/api/project/order/:orderId", updateOrder);
     app.put("/api/project/order/:orderId/status/", updateOrderStatus);
     app.delete("/api/project/order/:orderId", deleteOrder);
+    app.post("/api/project/orders/timeRange", findOrderInTimeRange);
 
     function createOrder(req, res) {
         var newOrder = req.body;
@@ -49,6 +50,12 @@ module.exports = function(app, model, auth) {
 
     function deleteOrder(req, res) {
         model.delete(req.params.orderId).then(function(orders) {
+            res.json(orders);
+        });
+    }
+
+    function findOrderInTimeRange(req, res) {
+        model.findOrderInTimeRange(req.body.startTime, req.body.endTime).then(function(orders) {
             res.json(orders);
         });
     }

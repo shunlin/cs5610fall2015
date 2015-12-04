@@ -13,7 +13,8 @@
             findOrdersForUser: findOrdersForUser,
             updateOrder: updateOrder,
             updateOrderStatus: updateOrderStatus,
-            deleteOrder: deleteOrder
+            deleteOrder: deleteOrder,
+            findOrderInTimeRange: findOrderInTimeRange
         };
         return api;
 
@@ -102,6 +103,14 @@
         function deleteOrder(orderId) {
             var deferred = $q.defer();
             $http.delete("/api/project/order/" + orderId).success(function(orders) {
+                deferred.resolve(orders);
+            });
+            return deferred.promise;
+        }
+
+        function findOrderInTimeRange(timeRange) {
+            var deferred = $q.defer();
+            $http.post("/api/project/orders/timeRange", timeRange).success(function(orders) {
                 deferred.resolve(orders);
             });
             return deferred.promise;
