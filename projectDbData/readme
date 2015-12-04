@@ -1,0 +1,13 @@
+1. Import data into mongodb with following commands:
+  mongoimport --db cs5610fall2015 --collection cs5610.project.user --file user.json
+  mongoimport --db cs5610fall2015 --collection cs5610.project.book --file book.json
+  mongoimport --db cs5610fall2015 --collection cs5610.project.order --file order.json
+
+2. Use following user account to login:
+  admin account:
+    username: alice
+    password: alice
+
+  regular account:
+    username: bob
+    password: bob
